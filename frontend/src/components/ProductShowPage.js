@@ -6,6 +6,7 @@ export default class ProductShowPage extends React.Component {
     render(){
         return(
             <div className="product-show-container">
+                <h1>Bamboo Travel Utensils</h1>
                 <div className="product-image">
                     <img src="https://cdn.shopify.com/s/files/1/1721/9289/products/togo_black_f23c06ac-6ee9-4dea-8ab0-ce1b2632fd61_900x.jpg?v=1557248571" alt=" " height="500" width="500"></img>
                 </div>

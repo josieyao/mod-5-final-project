@@ -58,6 +58,56 @@ const products = [
         "quantity": 1,
         "category": "Kitchen"
     },
+    {
+        "name": "Beeswax Sandwich Wrap",
+        "image1": "https://cdn.shopify.com/s/files/1/1797/9639/products/Bee_s_Wrap_Sandwich_Wrap_4_1512x.jpg?v=1552424569",
+        "image2": "https://cdn.shopify.com/s/files/1/1797/9639/products/Bee_s_Wrap_Sandwich_Wrap_2_1512x.jpg?v=1552424569",
+        "image3": "https://cdn.shopify.com/s/files/1/1797/9639/products/Bee_s_Wrap_Sandwich_Wrap_1_1512x.jpg?v=1552424569",
+        "description": "Take your sandwich on the go using natural beeswax! This product replaces plastic sandwich bags that are not recyclable. Use as a wrap or a place mat for a portable lunch. This wrap can also be used to cover containers. This product comes with one wrap that has a string and wooden button to close and secure your food. Sandwich wrap is 13in x 13in. To clean, wash with cool water and gentle soap. Hang or lay flat to dry. Do not microwaves or use with hot temperatures. The wrap can last one year or longer.",
+        "price": 11.00,
+        "quantity": 1,
+        "category": "Kitchen"
+    },
+    {
+        "name": "Cloth Bowl Covers, Set of 5",
+        "image1": "https://cdn.shopify.com/s/files/1/1721/9289/products/Cloth_Bowl_Covers_Blue_1a471216-9842-4d8a-96a3-094b5e36bd4d_900x.jpg?v=1556423492",
+        "image2": "https://cdn.shopify.com/s/files/1/1721/9289/products/Cloth_Bowl_Covers_2_900x.jpg?v=1556423492",
+        "image3": null,
+        "description": "These cloth dish covers are perfecting for wrapping a bowl when you're on you're way to a dinner party or covering a meal in the fridge. The covers are two layers thick to keep items fresh. Each set of covers comes in five different sizes—the largest covers a pie plate or casserole and the smallest will fit around a mason jar. Comes with a cloth envelope for storage. Made in California",
+        "price": 67.99,
+        "quantity": 1,
+        "category": "Kitchen"
+    },
+    {
+        "name": "Bento Bag",
+        "image1": "https://cdn.shopify.com/s/files/1/1721/9289/products/bento_group_05290bbc-38de-4ed8-a900-07f604ab1fce_900x.jpg?v=1556648052",
+        "image2": "https://cdn.shopify.com/s/files/1/1721/9289/products/bento_linen_b84b1e80-7989-4ee5-9f8c-0ff8381860d0_900x.jpg?v=1556648052",
+        "image3": "https://cdn.shopify.com/s/files/1/1721/9289/products/bento_linen_2_900x.jpg?v=1556648052",
+        "description": "The possibilities are endless with this beautiful bento bag. The bag is like a cloth basket with two pointed ends that tie together. Fill with your daily lunch, farmer's market fruits and vegetables or use as an overnight bag. Bag measures 10.5in W x 5in L x 10in H. Wash cold water, air dry. Made in California.",
+        "price": 29.99,
+        "quantity": 1,
+        "category": "Kitchen"
+    },
+    {
+        "name": "Reusable Glass Coffee Cup",
+        "image1": "https://cdn.shopify.com/s/files/1/1721/9289/products/keep_cup_black_900x.jpg?v=1556647006",
+        "image2": "https://cdn.shopify.com/s/files/1/1721/9289/products/keep_cup_black_top_900x.jpg?v=1556647006",
+        "image3": null,
+        "description": "The reusable glass KeepCup is a stylish and sustainable way to grab coffee or tea on-the-go. Each cup features a natural cork band made from the upcycled waste of a wine cork manufacturer. The cup is made from a durable, tempered soda-lime glass and the black lid is BPA-free. 16oz available. BPA-free. Hand-wash.",
+        "price": 29.99,
+        "quantity": 1,
+        "category": "Kitchen"
+    },
+    {
+        "name": "Stainless Steel Lunchbox",
+        "image1": "https://cdn.shopify.com/s/files/1/1721/9289/products/tiffin_1_900x.jpg?v=1556686078",
+        "image2": "https://cdn.shopify.com/s/files/1/1721/9289/products/tiffin_2_40123e53-92fb-454c-b0bd-135001d0d516_900x.jpg?v=1556686078",
+        "image3": "https://cdn.shopify.com/s/files/1/1721/9289/products/tiffin_3_900x.jpg?v=1556686078",
+        "description": "The stainless steel lunchbox is a perfect carrier for lunch or picnics on-the-go. Featuring three stackable tiers, the stainless steel lunchbox has the flexibility to pack one meal or a multi-course feast. Capacity: 4.5 cups total (1.5 cup per tier). 4in H x 5.25in D. Stainless steel. Dishwasher safe.",
+        "price": 33.99,
+        "quantity": 1,
+        "category": "Kitchen"
+    }
 
 ]
 
