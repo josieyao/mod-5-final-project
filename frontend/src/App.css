@@ -1,0 +1,133 @@
+* {
+  margin: 0;
+  padding: 0;
+}
+
+.App {
+  display: grid;
+  grid-row-gap: 1em;
+}
+
+.main-container {
+  /* width: 100%;
+  height: 100%; */
+
+}
+
+/* PRODUCT LIST */
+.product-list-container {
+  /* border: solid; */
+  /* display: flex;
+  flex-direction: row wrap;
+  align-content: center; */
+  /* display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  grid-column-gap: 1em;
+  grid-row-gap: 1em;
+  grid-auto-rows: 25em; */
+}
+
+.product-list {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  grid-column-gap: 1em;
+  grid-row-gap: 1em;
+  grid-auto-rows: 25em;
+}
+
+.product-card {
+  display: grid;
+  grid-template-rows: 1fr 2fr 1fr;
+  padding: 1em;
+  border: solid;
+  text-align: center;
+  overflow-wrap: break-word;
+  word-wrap: break-word;box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+
+}
+
+.product-card button {
+  border: none;
+  outline: 0;
+  padding: 10px;
+  color: white;
+  background-color: #000;
+  text-align: center;
+  cursor: pointer;
+  width: 100%;
+  font-size: 12px;
+}
+
+.product-card button:hover {
+  opacity: 0.7;
+}
+
+.product-card:hover {
+  /* box-shadow: 0 0 2px 1px rgba(0, 140, 186, 0.5); */
+}
+
+/* IMAGE CONTAINER */
+.image-container {
+
+}
+
+.responsive {
+  max-width: 100%;
+  height: auto;
+}
+
+/* NAVBAR */
+.navbar-container {
+  background-color: rgba(32, 219, 147, 0.851);
+  margin: 0px;
+  overflow: hidden;
+  /* position: sticky; */
+  top: 0px;
+  opacity: 0.65;
+  /* margin-top: 30px; */
+}
+
+.nav-links {
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  min-height: 10vh;
+  /* width: 40%; */
+  color: white;
+  list-style: none;
+}
+
+.nav-links a {
+  font-family: 'Georgia';
+  text-decoration: none;
+  font-size: 16px;
+  letter-spacing: 5px;
+  box-sizing: border-box;
+  float: center;
+  display: inline-block;
+  color: black;
+  text-align: center;
+  padding: 16px 24px;
+}
+
+.nav-links a:hover {
+  background: white;
+  color: black;
+}
+
+/* PRODUCT SHOW PAGE */
+.product-show-container {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  grid-column-gap: 1em;
+  grid-row-gap: 1em;
+  grid-auto-rows: 25em;
+}
+
+.product-image {
+
+}
+
+.product-details {
+
+}
