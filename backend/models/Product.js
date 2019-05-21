@@ -34,6 +34,8 @@ const Product = sequelize.define('product', {
 
 });
 
+// Product.belongsTo(User);
+
 module.exports = Product 
 
 sequelize.sync()

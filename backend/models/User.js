@@ -1,37 +1,59 @@
-const Sequelize = require('sequelize');
-const { STRING, DATE } = Sequelize
+const Sequelize = require("sequelize");
+const { STRING, DATE } = Sequelize;
+const bcrypt = require("bcrypt");
+const jwt = require("jsonwebtoken");
 
 const sequelize = new Sequelize({
-    dialect: 'sqlite',
-    storage: './database.sqlite'
+  dialect: "sqlite",
+  storage: "./database.sqlite"
 });
 
-const User = sequelize.define('user', {
+class User extends Sequelize.Model {
+  authenticate(rawPassword) {
+    return bcrypt.compareSync(rawPassword, this.password_digest); //will return true or false
+  }
+
+  set password(value) {
+    let salt = bcrypt.genSaltSync(10);
+    let hash = bcrypt.hashSync(value, salt); //saving password into a hash
+    this.password_digest = hash;
+  }
+
+  get token() {
+    return jwt.sign({ id: this.id }, "dskjfhsjfh35435"); //user gets a token for the browser to remember their session.
+  }
+
+  toJSON() {
+    let jsonObject = { ...this.dataValues, token: this.token }; //gets the json object with the token and user data. this is what is passed between the server and browser to authenticate instead of using the password for security reasons
+    delete jsonObject.password_digest; //deletes the password from the body of the request
+    return jsonObject;
+  }
+}
+
+User.init(
+  {
     first_name: {
-        type: STRING
+      type: STRING
     },
     last_name: {
-        type: STRING
+      type: STRING
     },
     email: {
-        type: STRING
+      type: STRING
     },
-    password: {
-        type: STRING
+    username: {
+      type: STRING
+    },
+    password_digest: {
+      type: STRING
     },
     birthday: {
-        type: DATE
+      type: DATE
     }
-});
+  },
+  { sequelize, modelName: "user" }
+);
 
-module.exports = User
+module.exports = User;
 
-sequelize.sync()
-
-// First name, last name, email
-// Shipping info: address, city, state, zip code
-// Optional: phone number
-// Payment info: 
-// Billing info
-// Option to check your shipping info as your billing info
-// Credit card number, expiration date, 3 numbers on the back
+sequelize.sync();
