@@ -196,17 +196,78 @@ const products = [
     category: "Bathroom"
   },
   {
-    name: "Double-Edge Safety Razor",
+    name: "Refillable Dental Floss",
     image1:
-      "https://cdn.shopify.com/s/files/1/1721/9289/products/razor_1_900x.jpg?v=1550345085",
-    image2: "https://cdn.shopify.com/s/files/1/1721/9289/products/razor_2_900x.jpg?v=1550345085",
-    image3: "https://cdn.shopify.com/s/files/1/1721/9289/products/razor_3_900x.jpg?v=1550345163",
+      "https://cdn.shopify.com/s/files/1/1797/9639/products/dental_blue_1512x.jpg?v=1524757936",
+    image2: "https://cdn.shopify.com/s/files/1/1797/9639/products/floss_1512x.jpg?v=1524757936",
+    image3: "https://cdn.shopify.com/s/files/1/1797/9639/products/floss_refill_boxes_1512x.jpg?v=1524757936",
     description:
-      "Rockwell Razors double-edge safety razor is a sustainable and beautiful alternative to disposable cartridge razors. The razor features an adjustable design to accommodate your skin type and stubble length so your get a close, comfortable shave. This is a great beginner safety razor and comes with 5 Swedish stainless steel razor blades.",
-    price: 34.99,
+      "Who thought flossing could be so zero waste? Made from mulberry silk floss and coated in (vegan) candelilla wax, this floss is sure to make you (and the planet) smile! Glass Dental Lace container with one 33 yard spool of biodegradable mulberry silk floss coated in candlilla wax inside the container and one refill spool. The box is 100% post-consumer fiber that is certified FSC and PCF free and is manufactured using renewable biogas energy and printed with soy-based inks. Refill spool comes in Polylactide Acid bag created from the lactic acid in plants and is certified compostable.",
+    price: 11.99,
     quantity: 1,
     category: "Bathroom"
   },
+  {
+    name: "Tea Tree Charcoal Facial Bar Soap",
+    image1:
+      "https://cdn.shopify.com/s/files/1/1797/9639/products/bar_soap_tea_tree_1512x.jpg?v=1524758385",
+    image2: "https://cdn.shopify.com/s/files/1/1797/9639/products/bar_soap_tea_tree_stack_1512x.jpg?v=1524758385",
+    image3: "https://cdn.shopify.com/s/files/1/1797/9639/products/bar_soap_tea_tree_2_1512x.jpg?v=1524758385",
+    description:
+      "A balanced and gentle facial soap, this bar detoxifies skin with absorbent activated charcoal. Cocoa butter promotes a youthful complexion, while ground oats soothe and mildly exfoliate. Fresh and herbaceous tea tree and eucalyptus oils act as a natural astringent to combat skin blemishes. Also great for the whole body!",
+    price: 12.00,
+    quantity: 1,
+    category: "Bathroom"
+  },
+  {
+    name: "Tongue Scraper",
+    image1:
+      "https://cdn.shopify.com/s/files/1/1797/9639/products/Clean_Planetware_Tongue_Scraper_1_1512x.jpg?v=1529519641",
+    image2: "https://cdn.shopify.com/s/files/1/1797/9639/products/tongue_scraper_1_1512x.jpg?v=1529519641",
+    image3: "https://cdn.shopify.com/s/files/1/1797/9639/products/Clean_Planetware_Tongue_Scraper_2_1512x.jpg?v=1529519641",
+    description:
+      "Use this stainless steel tongue scraper to help to freshen your breathe and fight bacteria. Plus, it also to enhance your sense of taste.",
+    price: 12.00,
+    quantity: 1,
+    category: "Bathroom"
+  },
+  {
+    name: "Menstrual Cup",
+    image1:
+      "https://cdn.shopify.com/s/files/1/1797/9639/products/purple_menstrual_cup_1_1512x.jpg?v=1533074194",
+    image2: "https://cdn.shopify.com/s/files/1/1797/9639/products/menstrual_cup_comparison_1512x.jpg?v=1533074194",
+    image3: "https://cdn.shopify.com/s/files/1/1797/9639/products/Clean_Planetware_Tongue_Scraper_2_1512x.jpg?v=1529519641",
+    description:
+      "Bell-shaped, reusable menstrual cup that gives you a comfortable, safe, odorless and eco-friendly period for up to 12 hours a day. Never buy a disposable pad or tampon again (take that pink tax!). Thanks to companies like Lunette, menstrual cups are a great option for any menstruating human looking to have a more sustainable, economical and healthier period. The cup saves the planet from millions of disposable period products ending up in the landfills.",
+    price: 39.99,
+    quantity: 1,
+    category: "Bathroom"
+  },
+  {
+    name: "Glass Soap Dispensers, Set of 2",
+    image1:
+      "https://cdn.shopify.com/s/files/1/1721/9289/products/soap_bottles_1_900x.jpg?v=1550612546",
+    image2: "https://cdn.shopify.com/s/files/1/1721/9289/products/soap_bottles_2_900x.jpg?v=1550612546",
+    image3: null,
+    description:
+      "These glass soap dispensers are the perfect addition to the minimal and sustainable home. Eliminate wasteful plastic packaging, and unknown chemicals found in commercial soap brands, by refilling these beauties with your favorite homemade soaps or lotions. Or, take them to your local bulk store or co-op and to fill them with dish soap, shampoo, conditioner, lotion and more! 16 oz. capacity (per bottle). Dishwasher safe (glass bottle only). BPA free.",
+    price: 24.99,
+    quantity: 1,
+    category: "Bathroom"
+  },
+  {
+    name: "Natural Conditioner (Rosemary Mint Vanilla)",
+    image1:
+      "https://cdn.shopify.com/s/files/1/1797/9639/products/Plaine_Products_Conditioner_1_1512x.jpg?v=1543272543",
+    image2: "https://cdn.shopify.com/s/files/1/1797/9639/products/Plaine_Products_Conditioner_2_1512x.jpg?v=1543272543",
+    image3: null,
+    description:
+      "The conditioner’s vegan ingredients restore essential nutrients to enhance your hair’s texture resulting in luminous, silky, smooth hair. Works for all hair types: rinse quickly for a light conditioning or leave in longer for ultra-hydration. A choice that’s good for you and the planet. Hypoallergenic. Baby safe. Color Safe. Biodegradable. Cruelty Free, no animal testing. Perfect for all hair types, especially for those with sensitive skin or scalp. No harmful chemicals (no PEG, PG, parabens, sulfates, dyes, synthetic fragrances or petrochemicals). You may opt for to buy this conditioner either with or without a BPA-free plastic pump.",
+    price: 30.00,
+    quantity: 1,
+    category: "Bathroom"
+  }
+
 
 
 ];
