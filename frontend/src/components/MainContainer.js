@@ -4,10 +4,10 @@ import ProductContainer from './ProductContainer'
 import ImageContainer from './ImageContainer'
 
 
-export default class Main extends React.Component {
+export default class MainContainer extends React.Component {
 
     render(){
-        console.log(this.props.products)
+        // console.log(this.props.products)
 
         return(
             <div className="main-container">

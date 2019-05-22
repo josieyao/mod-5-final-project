@@ -268,8 +268,6 @@ const products = [
     category: "Bathroom"
   }
 
-
-
 ];
 
 const users = [

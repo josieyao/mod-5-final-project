@@ -1,4 +1,5 @@
 import React from 'react'
+import { Link } from 'react-router-dom'
 // import Card from '@material-ui/core/Card';
 // import CardActionArea from '@material-ui/core/CardActionArea';
 // import CardActions from '@material-ui/core/CardActions';
@@ -17,7 +18,8 @@ import React from 'react'
 //   };
 
 
-export default class ProductCard extends React.Component {
+
+export default class _ProductCard extends React.Component {
     render(){
         console.log(this.props)
         return(
@@ -26,7 +28,9 @@ export default class ProductCard extends React.Component {
                 <h4>{this.props.name}</h4>
                 <p>${this.props.price}</p>
                 <br/>
-                <button>Add to Cart</button>
+                <Link to={`/products/${this.props.id}`}>View</Link>
+                {/* <button>View</button>  */}
+
                 {/* <p>Description:<p>
                 </p>{this.props.description}</p> */}
                 {/* <p>Quantity: {this.props.quantity}</p> */}
@@ -35,6 +39,7 @@ export default class ProductCard extends React.Component {
         )
     }
 }
+
 
 {/* <Card className={this.props.name}>
 <CardActionArea>
