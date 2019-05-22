@@ -4,11 +4,11 @@
 }
 
 .App {
-  display: grid;
+  /* display: grid;
   grid-row-gap: 1em;
   padding: 1em;
   margin: 0px 10px 0px 10px;
-  max-width:500px;
+  max-width:500px; */
 }
 
 .main-container {
@@ -110,7 +110,7 @@
   display: inline-block;
   color: black;
   text-align: center;
-  padding: 16px 24px;
+  /* padding: 16px 24px; */
 }
 
 .nav-links a:hover {
