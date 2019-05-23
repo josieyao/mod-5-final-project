@@ -19,12 +19,12 @@ window.io = io;
 //   return {}
 // }
 
-const mapDispatchToProps = {
-  fetchProducts: () => dispatch => {
-    fetch('http://localhost:3000/products')
-        .then( res => res.json())
-        .then( products => dispatch({ type: 'FETCH_PRODUCTS', products: products }))
-  }
+// const mapDispatchToProps = {
+//   fetchProducts: () => dispatch => {
+//     fetch('http://localhost:3000/products')
+//         .then( res => res.json())
+//         .then( products => dispatch({ type: 'FETCH_PRODUCTS', products: products }))
+//   }
 
   // setProducts: dispatch => {
   //   fetch("http://localhost:3000/products", {
@@ -39,10 +39,10 @@ const mapDispatchToProps = {
   // }
 
 
-}
+// }
 
-export default connect(null, mapDispatchToProps) (
-  class App extends React.Component {
+
+export default class App extends React.Component {
     // state = {
     //   products: [],
     //   users: []
@@ -62,24 +62,23 @@ export default connect(null, mapDispatchToProps) (
     //   }
     // };
 
-    componentDidMount() {
-      this.props.fetchProducts()
+    // componentDidMount() {
+    //   this.props.fetchProducts()
 
 
-      // io.emit('products.index', products => {
-      //   // console.log(products)
-      //   this.setState({ products })
-      // })
+    //   io.emit('products.index', products => {
+    //     // console.log(products)
+    //     this.setState({ products })
+    //   })
 
-      // io.on('products.update', products => {
-      //   this.setState({ products })
-      // })
+    //   io.on('products.update', products => {
+    //     this.setState({ products })
+    //   })
 
-      // this.checkAuth();
-    }
+    //   this.checkAuth();
+    // }
 
     render() {
-      // console.log(products)
 
       return (
         <Router history={history}>
@@ -87,10 +86,11 @@ export default connect(null, mapDispatchToProps) (
             <NavBar />
             <ImageContainer />
             <Switch>
-              <Route exact path="/" component={MainContainer}/>
+              
               <Route path="/login" render={() => (<Login checkAuth={this.checkAuth} users={this.state.users} />
                 )}/>
-              <Route path="/products/:id" component={ProductShowPage} />
+              <Route exact path="/products" component={MainContainer}/>
+              <Route exact path="/products/:id" component={ProductShowPage} />
               <Route path="/cart" component={CartContainer}
               />
             </Switch>
@@ -99,4 +99,4 @@ export default connect(null, mapDispatchToProps) (
       );
     }
   }
-)
+

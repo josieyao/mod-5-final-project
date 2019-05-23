@@ -13,7 +13,7 @@ export default class MainContainer extends React.Component {
             <div className="main-container">
                 {/* <NavBar/>
                 <ImageContainer/> */}
-                <ProductContainer products={this.props.products}/>
+                <ProductContainer/>
             </div>
         )
     }

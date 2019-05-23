@@ -9,12 +9,6 @@ const mapStateToProps = state => {
 };
 
 const mapDispatchToProps = {
-  addOneToQuantity: () => {
-    return { type: "INCREMENT_QUANTITY" };
-  },
-  deleteOneToQuantity: () => {
-    return { type: "DECREMENT_QUANTITY" };
-  },
   addItemToCart: product => {
     return { type: "ADD_ITEM_TO_CART", cartItems: product };
   },
@@ -32,9 +26,10 @@ export default connect(
   mapDispatchToProps
 )(
   class _ProductShowPage extends React.Component {
+
     componentDidMount() {
-      console.log(this.props.match.params.id);
-      this.props.selectProductItem(this.props.match.params.id);
+    //   console.log(this.props);
+        this.props.selectProductItem(this.props.match.params.id);
     }
 
     render() {
@@ -55,18 +50,10 @@ export default connect(
             <p>${this.props.currentProduct.price}</p>
             <p>{this.props.currentProduct.description}</p>
             <br />
-            <button onClick={() => this.props.addOneToQuantity()}>+</button>
+
+            
             <br />
-            <p>{this.props.currentProduct.quantity}</p>
-            <button onClick={() => this.props.deleteOneToQuantity()}>-</button>
-            <br />
-            <button
-              onClick={() =>
-                this.props.addItemToCart(this.props.currentProduct)
-              }
-            >
-              Add to Cart
-            </button>
+            <button onClick={() => this.props.addItemToCart(this.props.currentProduct)}>Add to Cart</button>
           </div>
         </div>
       );

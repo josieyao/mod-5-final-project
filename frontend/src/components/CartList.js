@@ -17,7 +17,9 @@ export default connect(mapStateToProps, mapDispatchToProps)(
 
             return(
                 <div className="cart-list-container">
+                    <h1>Your Cart</h1>
                     <div className="cart-list">
+                        {/* if (this.props.cartItems.length == 0) ? <p>Your cart is currently empty</p> : */}
                         {this.props.cartItems.map( item => (
                             <CartItemCard {...item}/>
                         ))}

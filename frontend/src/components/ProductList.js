@@ -7,10 +7,21 @@ const mapStateToProps = (state) => ({
 })
 
 const mapDispatchToProps = {
+    fetchAllProducts: () => dispatch => {
+        fetch('http://localhost:3000/products')
+            .then( res => res.json())
+            .then( products => dispatch({ type: 'FETCH_PRODUCTS', products: products }))
+      }
 }
 
 export default connect(mapStateToProps, mapDispatchToProps)(
+    
     class ProductList extends React.Component {
+
+        componentDidMount() {
+            this.props.fetchAllProducts();
+        }
+
         render(){
             return(
                 <div className="product-list-container">
@@ -20,15 +31,7 @@ export default connect(mapStateToProps, mapDispatchToProps)(
                         ))}
                     </div>
                 </div>
-
             )
         }
     }
 )
-
-            {/* <Grid container className="product-list-container"></Grid>
-                <Grid item xs style={{display: 'flex', padding: '20px', margin: '10px'}}>
-                    {this.props.products.map( product => (
-                    <ProductCard {...product}/> ))}
-                </Grid>
-            </Grid> */}

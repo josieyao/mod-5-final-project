@@ -19,7 +19,7 @@ class _CartContainer extends React.Component {
     render(){
         return(
             <div className="cart-container">
-                <CartList cart={this.props.cart}/>
+                <CartList/>
             </div>
         )
     }
