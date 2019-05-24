@@ -13,7 +13,7 @@ const mapDispatchToProps = {
 }
 
 export default connect(mapStateToProps,mapDispatchToProps)(
-  class _ProductCard extends React.Component {
+  class ProductCard extends React.Component {
 
     render() {
 
@@ -33,3 +33,4 @@ export default connect(mapStateToProps,mapDispatchToProps)(
     }
   }
 );
+

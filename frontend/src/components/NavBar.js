@@ -15,6 +15,13 @@ export default connect(mapStateToProps, mapDispatchToProps)(
     class NavBar extends React.Component {
 
         render(){
+        const cartQuantity = this.props.cartItems.reduce((acc, item) => {
+            return acc + item.quantity }, 0)
+
+        // const totalCost = this.props.cartItems.reduce((acc, item) => {
+        //     console.log(acc, item, item.price )
+        //   return acc + item.price * item.quantity;
+        // }, 0);
 
             return(
                 <div className="navbar-container">
@@ -35,7 +42,7 @@ export default connect(mapStateToProps, mapDispatchToProps)(
                             <li>Kits</li>
                         </Link>
                         <Link to="/cart">
-                            <li>Cart ({this.props.cartItems.length})</li>
+                            <li>Cart ({cartQuantity})</li>
                         </Link>
                     </div>
                 </div>

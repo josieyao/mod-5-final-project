@@ -2,6 +2,8 @@ const Sequelize = require("sequelize");
 const { STRING, DATE } = Sequelize;
 const bcrypt = require("bcrypt");
 const jwt = require("jsonwebtoken");
+const Product = require("./Product");
+const Cart = require("./Cart");
 
 const sequelize = new Sequelize({
   dialect: "sqlite",
@@ -53,6 +55,12 @@ User.init(
   },
   { sequelize, modelName: "user" }
 );
+
+// Product.belongsTo(Cart)
+// Cart.belongsTo(User)
+User.belongsToMany(Product, {through: Cart})
+Product.belongsToMany(User, {through: Cart})
+
 
 module.exports = User;
 

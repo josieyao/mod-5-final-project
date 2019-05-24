@@ -4,68 +4,65 @@ import ReduxThunk from "redux-thunk";
 
 const initialState = {
   products: [],
-  cartItems: [],
-  totalCost: 0,
+  cartItems: JSON.parse(localStorage.getItem("cart")) || [],
   currentProduct: {}
 };
 
 const reducer = (currentState, action) => {
+  // console.log(action);
+  let newState;
   switch (action.type) {
     case "FETCH_PRODUCTS":
-      return {
+      newState = {
         ...currentState,
         products: action.products
       };
       break;
     case "SELECT_PRODUCT_ITEM":
-      return {
+      newState = {
         ...currentState,
         currentProduct: action.product
       };
       break;
     case "ADD_ITEM_TO_CART":
-      return {
+      newState = {
         ...currentState,
         cartItems: [...currentState.cartItems, action.cartItems]
       };
       break;
     case "DELETE_ITEM_FROM_CART":
-      return {
+      newState = {
         ...currentState,
         cartItems: currentState.cartItems.filter(item => item.id !== action.id)
       };
       break;
     case "INCREMENT_QUANTITY":
-      return {
+      newState = {
         ...currentState,
-        currentProduct: {
-          ...currentState.currentProduct,
-          quantity: currentState.currentProduct.quantity + 1
-        }
+        cartItems: currentState.cartItems.map(item =>
+          item.id == action.id ? { ...item, quantity: item.quantity + 1 } : item
+        )
       };
       break;
     case "DECREMENT_QUANTITY":
-      return {
-        ...currentState,
-        currentProduct: {
-          ...currentState.currentProduct,
-          quantity:
-            currentState.currentProduct.quantity > 0
-              ? currentState.currentProduct.quantity - 1
-              : (currentState.currentProduct.quantity = 0)
-        }
-      };
+        newState = {
+          ...currentState,
+          cartItems: currentState.cartItems.map(item =>
+            item.id == action.id ? { ...item, quantity: Math.max(item.quantity - 1, 1) } : item
+          )
+        };
       break;
-
-    // case 'UPDATE_TOTAL_COST':
-    //     return { ...currentState, totalCost: currentState.totalCost + price }
-    // break;
-    // case 'REDUCE_TOTAL_COST':
-    //     return { ...currentState, totalCost: currentState.totalCost - price }
-    // break;
+    case "LOAD_TEMPORARY_CART":
+      newState = {
+        ...currentState,
+        cartItems: action.cartItems
+      };
     default:
-      return currentState;
+      newState = currentState;
   }
+  // console.log(action.type);
+  localStorage.setItem("cart", JSON.stringify(newState.cartItems));
+  return newState;
 };
 
 const middleware = compose(
@@ -75,5 +72,3 @@ const middleware = compose(
 
 const store = createStore(reducer, initialState, middleware);
 export default store;
-
-// store.dispatch({ type: 'ADD_ITEM_TO_CART'})

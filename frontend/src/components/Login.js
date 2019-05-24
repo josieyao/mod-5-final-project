@@ -10,7 +10,7 @@ export default class Login extends React.Component {
 
     handleLoginSubmit = (e) => {
     e.preventDefault()
-    console.log('Hello')
+
     let username =  e.target.username.value
     let password = e.target.password.value
     
@@ -50,10 +50,10 @@ export default class Login extends React.Component {
                         <label for="password"><b>Password</b></label><br/>
                         <input onChange={this.handleChange} type="password" placeholder="Enter Password" name="password" required/>
                         <br/>
-                        <br/>
                         <button button className="tiny ui inverted red basic button" type="submit">Login</button>
                         <br/>
-        
+                        <br/>
+
                         <h4>No Account Yet?</h4>
                         <Link to="/new">
                         <button button className="tiny ui inverted red basic button" type="submit">Create New Account</button>

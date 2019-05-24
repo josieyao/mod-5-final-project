@@ -1,5 +1,6 @@
 const Sequelize = require('sequelize');
 const { STRING, TEXT, DOUBLE, INTEGER } = Sequelize
+// const Cart = require("./Cart");
 
 const sequelize = new Sequelize({
     dialect: 'sqlite',
@@ -34,7 +35,6 @@ const Product = sequelize.define('product', {
 
 });
 
-// Product.belongsTo(User);
 
 module.exports = Product 
 

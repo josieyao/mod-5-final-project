@@ -11,9 +11,9 @@ import { Router, Switch, Route } from "react-router-dom";
 import history from "./history";
 import { connect } from 'react-redux'
 
-const io = socketIO("http://10.185.7.20:8080/");
+// const io = socketIO("http://10.185.2.251:8080/");
 
-window.io = io;
+// window.io = io;
 
 // const mapStateToProps = (state) => {
 //   return {}
@@ -41,8 +41,42 @@ window.io = io;
 
 // }
 
+const mapStateToProps = (state) => ({
+  products: state.products
+})
 
-export default class App extends React.Component {
+const mapDispatchToProps = {
+  loadTempCart: items => ({ type: "LOAD_TEMPORARY_CART", cartItems: items })
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(
+
+class App extends React.Component {
+  componentDidMount() {
+    // if(localStorage.getItem('token'))
+
+    if(localStorage.getItem('cart'))
+      this.props.loadTempCart(JSON.parse(localStorage.getItem('cart')))
+      // this.props.loadTempCart({"SomeEcoThing": 3, "SomethingElse": 5})
+    else
+      localStorage.setItem('cart', JSON.stringify([]))
+    
+
+  //   this.props.fetchProducts()
+
+
+  //   io.emit('products.index', products => {
+  //     // console.log(products)
+  //     this.setState({ products })
+  //   })
+
+  //   io.on('products.update', products => {
+  //     this.setState({ products })
+  //   })
+
+  //   this.checkAuth();
+  }
+
     // state = {
     //   products: [],
     //   users: []
@@ -62,21 +96,6 @@ export default class App extends React.Component {
     //   }
     // };
 
-    // componentDidMount() {
-    //   this.props.fetchProducts()
-
-
-    //   io.emit('products.index', products => {
-    //     // console.log(products)
-    //     this.setState({ products })
-    //   })
-
-    //   io.on('products.update', products => {
-    //     this.setState({ products })
-    //   })
-
-    //   this.checkAuth();
-    // }
 
     render() {
 
@@ -91,12 +110,14 @@ export default class App extends React.Component {
                 )}/>
               <Route exact path="/products" component={MainContainer}/>
               <Route exact path="/products/:id" component={ProductShowPage} />
-              <Route path="/cart" component={CartContainer}
-              />
+              <Route path="/cart" component={CartContainer}/>
+              <Route path="/checkout" component={Login}/>
             </Switch>
           </div>
         </Router>
       );
     }
   }
+)
+
 
