@@ -1,4 +1,6 @@
 const User = require("../models/User");
+const bcrypt = require('bcrypt')
+const jwt = require('jsonwebtoken')
 
 module.exports = {
   sockets: socket => {
@@ -24,21 +26,55 @@ module.exports = {
       });
     });
 
-    //create jwt token with a post
+    //create jwt token with a post request
     app.post("/login", async (req, res) => {
       // console.log(req.body.username, req.body.password)
-      let users = await User.findAll({
-        where: {
-          username: req.body.username
-        }
-      });
 
-      let user = users[0];
-      console.log(req.body.password);
-      if (user.authenticate(req.body.password)) {
-        res.json(user);
-      }
+      User.findOne({ where: { username: req.body.username } })
+        .then(user => {
+          let hash = user.password_digest
+          bcrypt.compare(req.body.password, hash, (err, result) => {
+            if (result == true) {
+              //jwt.sign({user: user}, 'pothers', (err, token) => {
+              // console.log('correct')
+              res.json(user)
+              //})
+            } else {
+              console.log('wrong')
+            }
+          })
+        })
+      // let users = await User.findAll({
+      //   where: {
+      //     username: req.body.username
+      //   }
+      // });
+      // //console.log(users)
+
+      // let user = users[0];
+      // /////authentication
+
+      // console.log(req.body.password);
+      // if (user.authenticate(req.body.password)) {
+      //   console.log('correct')
+      //   res.json(user);
+      // }
     });
+
+    //registration
+    app.post("/registration", async (req, res) => {
+      User.create({
+        first_name: req.body.firstname,
+        last_name: req.body.lastname,
+        email: req.body.email,
+        username: req.body.username,
+        password_digest: req.body.password
+      }).then(user => {
+        // user.password = req.body.password
+        // user.save()
+        res.json({ auth_token: user.token })
+      })
+    })
 
     // edit
     app.get("/users/:id", (req, res) => {

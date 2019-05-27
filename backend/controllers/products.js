@@ -1,4 +1,6 @@
 const Product = require("../models/Product");
+var express = require('express');
+var router = express.Router();
 
 module.exports = {
   sockets: socket => {

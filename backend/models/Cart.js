@@ -1,5 +1,5 @@
 const Sequelize = require('sequelize');
-// const { INTEGER } = Sequelize
+const { INTEGER } = Sequelize
 
 const sequelize = new Sequelize({
     dialect: 'sqlite',
@@ -13,6 +13,9 @@ const Cart = sequelize.define('cart', {
     // product_id: {
     //     type: INTEGER
     // }
+    quantity: {
+        type: INTEGER
+    }
 });
 
 

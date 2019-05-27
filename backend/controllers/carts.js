@@ -1,4 +1,6 @@
-const Cart = require("../models/Cart");
+const Product = require("../models/Product");
+const User = require("../models/User");
+const jwt = require("jsonwebtoken");
 
 module.exports = {
   sockets: socket => {
@@ -16,9 +18,9 @@ module.exports = {
   http: app => {
     // index
     app.get("/carts", (req, res) => {
+      // User.findOne({ where: { first_name: 'Tom' } }).then(user => user.getProducts().then(products => res.json(products)))
       Cart.findAll().then(carts => {
         res.json(carts);
-      });
     });
 
     // edit
@@ -30,8 +32,31 @@ module.exports = {
 
     //update
     app.patch("/carts/:id", async (req, res) => {
-      let cart = await Cart.findByPk(req.params.id);
-      cart.update(req.body);
+      // let cart = await Cart.findByPk(req.params.id);
+      // cart.update(req.body);
+      let cart = await Cart.findOne({ where: { userID: req.body.userId, productId: req.body.productId}} )
+      cart.update({ quantity: cart.quantity + 1 });
     });
-  }
-};
+
+    app.post("/carts", async (req, res) => {
+      let token = User.authorize(req)
+      // console.log(token)
+      try {
+        token = jwt.verify(token, 'pothers')
+        let response = JSON.parse(req.body.cart)
+        // console.log(res)
+        await Promise.all(response.map(async cartItem => {
+          let product = await Product.findByPk(cartItem.id)
+          await product.addUser([token.id])
+        }))
+        let user = await User.findByPk(token.id)
+        let products = await user.getProducts()
+        res.json(products)
+
+      } catch (error) {
+        res.send(error)
+      }
+    })
+  })}
+}
+

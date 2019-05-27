@@ -1,6 +1,5 @@
 const Sequelize = require('sequelize');
 const { STRING, TEXT, DOUBLE, INTEGER } = Sequelize
-// const Cart = require("./Cart");
 
 const sequelize = new Sequelize({
     dialect: 'sqlite',
