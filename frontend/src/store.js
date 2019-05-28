@@ -5,7 +5,8 @@ import ReduxThunk from "redux-thunk";
 const initialState = {
   products: [],
   cartItems: JSON.parse(localStorage.getItem("cart")) || [],
-  currentProduct: {}
+  currentProduct: {},
+  currentUser: {}
 };
 
 const reducer = (currentState, action) => {
@@ -27,7 +28,7 @@ const reducer = (currentState, action) => {
     case "ADD_ITEM_TO_CART":
       newState = {
         ...currentState,
-        cartItems: [...currentState.cartItems, action.cartItems]
+        cartItems: [...currentState.cartItems, { ...action.cartItems, quantity: 1 }]
       };
       break;
     case "DELETE_ITEM_FROM_CART":
@@ -40,7 +41,7 @@ const reducer = (currentState, action) => {
       newState = {
         ...currentState,
         cartItems: currentState.cartItems.map(item =>
-          item.id == action.id ? { ...item, quantity: item.quantity + 1 } : item
+          item.id === action.id ? { ...item, quantity: item.cart.quantity + 1 } : item
         )
       };
       break;
@@ -48,7 +49,7 @@ const reducer = (currentState, action) => {
         newState = {
           ...currentState,
           cartItems: currentState.cartItems.map(item =>
-            item.id == action.id ? { ...item, quantity: Math.max(item.quantity - 1, 1) } : item
+            item.id === action.id ? { ...item, quantity: Math.max(item.quantity - 1, 1) } : item
           )
         };
       break;
@@ -57,6 +58,13 @@ const reducer = (currentState, action) => {
         ...currentState,
         cartItems: action.cartItems
       };
+      break;
+    case "CURRENT_USER":
+        newState = {
+          ...currentState,
+          currentUser: action.currentUser
+    };
+    break;
     default:
       newState = currentState;
   }

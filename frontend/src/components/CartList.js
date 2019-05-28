@@ -15,32 +15,28 @@ export default connect(
 )(
   class CartList extends React.Component {
     render() {
-      // let cartPrices = this.props.cartItems.map( item => item.price )
-
       const totalCost = this.props.cartItems.reduce((acc, item) => {
-          console.log(acc, item, item.price )
-        return acc + item.price * item.quantity;
-      }, 0);
+        return acc + item.price * item.quantity}, 0);
       const roundedCost = Math.floor(totalCost * 100) / 100
 
       return (
         <div className="cart-list-container">
-          <h1>Your Cart</h1>
+          <h1 style={{fontSize: '70px', textAlign: 'center'}}>Your Cart</h1>
           <div className="cart-list">
             {this.props.cartItems.length === 0 ? 
             
                 <h2>Your cart is currently empty</h2> : 
-                
+
                 <div> 
                      {this.props.cartItems.map(item => <CartItemCard {...item} />)}
-                    <p>Total ${roundedCost}</p>
+                    <p style={{fontSize: '40px'}}>Total: ${roundedCost}</p>
                     <Link to={"/checkout"}>
                         <button>Checkout</button>
                     </Link>
                </div>}
             </div>
         </div>
-      );
+      )
     }
   }
-);
+)

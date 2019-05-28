@@ -1,9 +1,12 @@
 import React from "react";
 import { connect } from "react-redux";
+import DeleteRoundedIcon from '@material-ui/icons/DeleteRounded';
+
 
 const mapStateToProps = state => ({
   currentProduct: state.currentProduct,
-  cartItems: state.cartItems
+  cartItems: state.cartItems,
+  currentUser: state.currentUser
 });
 
 const mapDispatchToProps = {
@@ -26,27 +29,55 @@ export default connect(
   mapDispatchToProps
 )(
   class CartItemCard extends React.Component {
-    
+
+  //   incrementButtonClicked = (product) => {
+  //   if(this.props.currentUser){
+  //       fetch(`http://localhost:3000/carts/${id}`, {
+  //         method: "PATCH",
+  //         headers: {
+  //           "Content-Type": "application/json"
+  //         },
+  //         body: JSON.stringify({
+  //           productId: product.id,
+  //           userId: this.props.currentUser.id
+  //       })
+  //       .then( res => res.json())
+  //       .then( product => {
+  //         this.props.addOneToQuantity(product.id)
+  //       })
+  //   })} else {
+  //     this.props.addOneToQuantity(product.id)
+  //   }
+  // }
 
     render() {
     const subtotal = this.props.price * this.props.quantity
     const roundedSubtotal = Math.floor(subtotal * 100) / 100
-
+      console.log(this.props.quantity)
       return (
         <div className="cart-item-card">
-          <img src={this.props.image1} alt=" " height="300" width="300" />
-          <h3>{this.props.name}</h3>
-          <p>${this.props.price}</p>
-          <button onClick={() => this.props.addOneToQuantity(this.props.id)}>
-            +
-          </button>
-          <p>{this.props.quantity}</p>
-          <button onClick={() => this.props.deleteOneToQuantity(this.props.id)}>-</button>
-          <p>Subtotal ${roundedSubtotal}</p>
+          <img src={this.props.image1} alt=" " height="200" width="200" />
 
-          <button onClick={ () => this.props.deleteItemFromCart(this.props.id)}>Remove Item</button>
-          <br/>
-          <br/>
+          <div className="card-item-details" style={{marginLeft: '10px'}}>
+            <h3>{this.props.name}</h3>
+            <br/>
+            <p>Price: ${this.props.price}</p>
+            <br/>
+            <div className="add-and-minus-quantity">
+              
+              <i className="far fa-minus-square" style={{cursor: 'pointer', marginRight: '10px'}} onClick={() => this.props.deleteOneToQuantity(this.props.id)}></i>
+
+              <p>{this.props.quantity}</p>
+
+              <i className="far fa-plus-square" style={{cursor: 'pointer', marginLeft: '10px'}} onClick={() => this.props.addOneToQuantity(this.props.id)}></i>
+            </div>
+            <br/>
+            <p>Subtotal ${roundedSubtotal}</p>
+            <br/>
+            <DeleteRoundedIcon style={{cursor: 'pointer'}} onClick={ () => this.props.deleteItemFromCart(this.props.id)}></DeleteRoundedIcon>
+            <br/>
+            <br/>
+          </div>
         </div>
       );
     }

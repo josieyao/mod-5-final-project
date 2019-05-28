@@ -16,31 +16,28 @@ module.exports = {
   },
 
   http: app => {
+    console.log('we are in here')
     // index
     app.get("/carts", (req, res) => {
       // User.findOne({ where: { first_name: 'Tom' } }).then(user => user.getProducts().then(products => res.json(products)))
-      Cart.findAll().then(carts => {
-        res.json(carts);
+      res.send("hey bitch");
     });
 
     // edit
     app.get("/carts/:id", (req, res) => {
-      Cart.findByPk(req.params.id).then(cart => {
-        res.json(cart);
-      });
+      res.send("jk love u")
     });
 
     //update
     app.patch("/carts/:id", async (req, res) => {
       // let cart = await Cart.findByPk(req.params.id);
       // cart.update(req.body);
-      let cart = await Cart.findOne({ where: { userID: req.body.userId, productId: req.body.productId}} )
+      let cart = await Cart.findOne({ where: { userID: req.body.userId, productId: req.body.productId } })
       cart.update({ quantity: cart.quantity + 1 });
     });
 
     app.post("/carts", async (req, res) => {
       let token = User.authorize(req)
-      // console.log(token)
       try {
         token = jwt.verify(token, 'pothers')
         let response = JSON.parse(req.body.cart)
@@ -57,6 +54,6 @@ module.exports = {
         res.send(error)
       }
     })
-  })}
+  }
 }
 

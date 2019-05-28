@@ -16,18 +16,19 @@ const mapDispatchToProps = {
 
 export default connect(mapStateToProps, mapDispatchToProps)(
     
-    class ProductList extends React.Component {
+    class KitchenList extends React.Component {
 
         componentDidMount() {
             this.props.fetchAllProducts();
         }
 
         render(){
-            // console.log(this.props.products.filter( product => product.category == "Kitchen"))
+            let kitchenProducts = this.props.products.filter( product => product.category == "Kitchen")
+
             return(
                 <div className="product-list-container">
                     <div className="product-list">
-                        {this.props.products.map( product => (
+                        {kitchenProducts.map( product => (
                             <ProductCard {...product}/>
                         ))}
                     </div>

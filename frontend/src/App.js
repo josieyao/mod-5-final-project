@@ -1,13 +1,20 @@
 import React from "react";
 import socketIO from "socket.io-client";
 import "./App.css";
-import MainContainer from "./components/MainContainer";
+import LogInOutButton from "./components/LogInOutButton"
+import Header from "./components/Header"
 import NavBar from "./components/NavBar";
 import ImageContainer from "./components/ImageContainer";
+import Login from "./components/Login";
+import Registration from "./components/Registration"
+import MainContainer from "./components/MainContainer";
+import HomeContainer from "./components/HomeContainer";
 import ProductShowPage from "./components/ProductShowPage";
 import CartContainer from "./components/CartContainer";
-import Login from "./components/Login";
-import { Router, Switch, Route } from "react-router-dom";
+import KitchenList from "./components/KitchenList"
+import Footer from "./components/Footer"
+import NoPageFound from "./components/NoPageFound"
+import { Router, Switch, Route, Redirect } from "react-router-dom";
 import history from "./history";
 import { connect } from 'react-redux'
 
@@ -98,21 +105,27 @@ class App extends React.Component {
 
 
     render() {
+      // write a boolean function to conditionally render and use the "Redirect" from react router
 
       return (
         <Router history={history}>
           <div className="App">
+            <LogInOutButton/>
+            <Header/>
             <NavBar />
             <ImageContainer />
             <Switch>
-              
-              <Route path="/login" render={() => (<Login checkAuth={this.checkAuth} users={this.state.users} />
-                )}/>
+              <Route exact path="/" component={HomeContainer}/>
+              <Route path="/login" component={Login}/>
               <Route exact path="/products" component={MainContainer}/>
               <Route exact path="/products/:id" component={ProductShowPage} />
+              <Route exact path="/products/kitchen" component={KitchenList} />
               <Route path="/cart" component={CartContainer}/>
               <Route path="/checkout" component={Login}/>
+              <Route path="/registration" component={Registration}/>
+              <Route component={NoPageFound}/>
             </Switch>
+            {/* <Footer/> */}
           </div>
         </Router>
       );

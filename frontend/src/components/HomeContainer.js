@@ -1,18 +1,23 @@
-// import React from 'react'
-// import NavBar from './NavBar'
-// import ProductContainer from './ProductContainer'
+import React from 'react'
 
 
-// export default class Main extends React.Component {
+const styles = {
+    backgroundImage: 'url("https://images.pexels.com/photos/1131458/pexels-photo-1131458.jpeg?auto=compress&cs=tinysrgb&dpr=3&h=750&w=1260")',
+    backgroundRepeat: 'no-repeat',
+    backgroundAttachment: 'fixed',
+    zIndex: -1
+}
 
-//     render(){
-//         console.log(this.props.products)
+export default class HomeContainer extends React.Component {
 
-//         return(
-//             <div className="main-container">
-//                 <NavBar/>
-//                 <ProductContainer products={this.props.products}/>
-//             </div>
-//         )
-//     }
-// }
+    render(){
+
+        return(
+            <div style={styles}>
+                <div className="home-container">
+                    Hello
+                </div>
+            </div>
+        )
+    }
+}
