@@ -7,7 +7,7 @@ import ImageContainer from './ImageContainer'
 export default class MainContainer extends React.Component {
 
     render(){
-        // console.log(this.props.products)
+        console.log(this.props.filter)
 
         return(
             <div className="main-container">

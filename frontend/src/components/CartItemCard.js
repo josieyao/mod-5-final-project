@@ -55,8 +55,8 @@ export default connect(mapStateToProps, mapDispatchToProps)(
 
     getCurrentSubtotal = () => {
       if(this.props.currentUser){
-        console.log(this.props.price)
-        console.log(this.props.cart.quantity)
+        // console.log(this.props.price)
+        // console.log(this.props.cart.quantity)
         
         let subtotal = this.props.price * this.props.cart.quantity
         let roundedSubtotal = Math.floor(subtotal * 100) / 100
@@ -83,7 +83,7 @@ export default connect(mapStateToProps, mapDispatchToProps)(
               })
           .then( res => res.json())
           .then( data => {
-            console.log(data)
+            // console.log(data)
 
             //needs to decrease cart quantity and remove item from card
             if (data.status === "success") {

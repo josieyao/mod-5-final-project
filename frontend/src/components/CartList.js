@@ -20,16 +20,16 @@ export default connect(
   class CartList extends React.Component {
 
     componentDidMount = () => {
-      console.log(this.props.currentUser)
+      // console.log(this.props.currentUser)
       if (this.props.currentUser) {
         fetch(`http://localhost:3000/carts?user=${this.props.currentUser.id}`)
           .then(res => res.json())
           .then(cart => {
-            console.log(cart)
+            // console.log(cart)
             localStorage.removeItem("cart")
             localStorage.setItem("cart", JSON.stringify(cart))
           })
-        console.log(localStorage.getItem("cart"))
+        // console.log(localStorage.getItem("cart"))
       }
     }
 

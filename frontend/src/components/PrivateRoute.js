@@ -1,4 +1,4 @@
-import React from 'react';  
+import React from 'react';
 import { connect } from 'react-redux'
 import { Route } from 'react-router-dom';
 import { withRouter } from "react-router"
@@ -24,36 +24,38 @@ class PrivateRoute extends React.PureComponent {
 
     componentDidMount = () => {
         fetch("http://localhost:3000/authorize", {
-            headers:{
+            headers: {
                 'Content-Type': 'application/json',
                 'Authorization': `Bearer ${localStorage.getItem("token")}`
             },
         })
             .then(async res => {
-                if(!res.ok) {
+                if (!res.ok) {
                     this.props.history.push('/login')
                 } else {
                     res.json().then(data => {
                         this.props.setUser(data.user)
                     })
                 }
-              })
-            
+            })
+
     }
 
     render() {
-       const {component: Component, ...rest} = this.props;
+        const { component: Component, render, ...rest } = this.props;
 
-       const renderRoute = props => {
-              return (
-                  <Component {...props} />
-              );
+        const renderRoute = props => {
+            return (
+                render
+                    ? render(rest)
+                    : <Component {...props} />
+            );
 
-       }
+        }
 
-       return (
-           <Route {...rest} render={renderRoute}/>
-       );
+        return (
+            <Route {...rest} render={renderRoute} />
+        );
     }
 }
 
