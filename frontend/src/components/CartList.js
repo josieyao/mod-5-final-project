@@ -27,7 +27,7 @@ export default connect(
           .then(cart => {
             console.log(cart)
             localStorage.removeItem("cart")
-            localStorage.setItem("cart", cart)
+            localStorage.setItem("cart", JSON.stringify(cart))
           })
         console.log(localStorage.getItem("cart"))
       }
@@ -47,7 +47,7 @@ export default connect(
         //user is not logged in & has something in their cart
       } else if (!this.props.currentUser && this.props.cartItems.length > 0) {
         const totalCost = this.props.cartItems.reduce((acc, item) => {
-          return acc + item.price * item.quantity
+          return acc + item.price * item.cart.quantity
         }, 0);
         let roundedCost = Math.floor(totalCost * 100) / 100
         return roundedCost

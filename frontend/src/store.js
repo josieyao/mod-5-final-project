@@ -6,7 +6,8 @@ const initialState = {
   products: [],
   cartItems: localStorage.getItem('cart') ? JSON.parse(localStorage.getItem("cart")) : [],
   currentProduct: {},
-  currentUser: null
+  currentUser: null,
+  clicked: false
   // currentTotalCost: 0
 };
 
@@ -63,14 +64,6 @@ const reducer = (currentState, action) => {
           )
         };
       break;
-      // case "UPDATE_CURRENT_TOTAL_COST":
-      //     newState = {
-      //       ...currentState,
-      //       currentTotalCost: currentState.cartItems.map(item =>
-      //         item.id === action.id ? { ...item, quantity: Math.max(item.quantity - 1, 1) } : item
-      //       )
-      //     };
-      //   break;
     case "LOAD_TEMPORARY_CART":
       newState = {
         ...currentState,
@@ -85,8 +78,17 @@ const reducer = (currentState, action) => {
     break;
     default:
       newState = currentState;
+
+    // case "UPDATE_CURRENT_TOTAL_COST":
+    //     newState = {
+    //       ...currentState,
+    //       currentTotalCost: currentState.cartItems.map(item =>
+    //         item.id === action.id ? { ...item, quantity: Math.max(item.quantity - 1, 1) } : item
+    //       )
+    //     };
+    //   break;
   }
-  // console.log(action.type);
+
   localStorage.setItem("cart", JSON.stringify(newState.cartItems))
   // localStorage.setItem("currentUser", JSON.stringify(newState.currentUser));
   return newState;

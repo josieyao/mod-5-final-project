@@ -47,9 +47,11 @@ export default connect(mapStateToProps, mapDispatchToProps)(
             })
             .then(res=> res.json())
             .then(user => {
-                console.log(user)
-                this.props.setCurrentUser(user.user)
-                localStorage.setItem('token', user.auth_token)
+                // console.log(user)
+                // this.props.setCurrentUser(user.user)
+                // localStorage.setItem('token', user.auth_token)
+                // this.props.history.push("/products")
+                this.props.history.push({pathname: "/login", successfulMsg: "Registration Successful! Please log in."})
             })
         }
 

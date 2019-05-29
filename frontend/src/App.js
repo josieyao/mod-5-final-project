@@ -119,9 +119,9 @@ class App extends React.Component {
               <PrivateRoute exact path="/" component={HomeContainer}/>
               <PrivateRoute path="/login" component={Login}/>
               <PrivateRoute path="/products" component={MainContainer} exact />
+              <PrivateRoute exact path="/products/kitchen" render={() => <MainContainer filter={"kitchen"}/>}/>
               {/* <PrivateRoute exact path="/products" component={MainContainer}/> */}
               <PrivateRoute exact path="/products/:id" component={ProductShowPage} />
-              <PrivateRoute exact path="/products/kitchen" component={KitchenList} />
               <PrivateRoute path="/cart" component={CartContainer}/>
               <PrivateRoute path="/checkout" component={Login}/>
               <PrivateRoute path="/registration" component={Registration}/>

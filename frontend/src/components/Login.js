@@ -52,8 +52,8 @@ export default connect(mapStateToProps, mapDispatchToProps)(
           localStorage.setItem("token", userData.token);
 
           this.props.setCurrentUser(userData)
-          if (this.props.cartItems > 0 || {})
-            this.handleLocalStorageCart();
+          this.handleLocalStorageCart()
+
           this.props.history.push('/products')
         });
     };
@@ -91,6 +91,7 @@ export default connect(mapStateToProps, mapDispatchToProps)(
     render() {
       return (
         <div className="login-form-container">
+          <div>{this.props.location.successfulMsg}</div>
           <h1>Login</h1>
           <form onSubmit={this.handleLoginSubmit}>
             <div className="login-form">

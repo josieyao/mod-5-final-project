@@ -27,8 +27,9 @@ export default connect(mapStateToProps, mapDispatchToProps)(
                 return totalNum
             } else if( !this.props.currentUser && this.props.cartItems.length > 0 ){
                 let totalNum = 0
-                this.props.cartItems.map(item => {
-                    totalNum += item.quantity
+                this.props.cartItems.forEach(item => {
+                    console.log(item)
+                    totalNum += item.cart.quantity
                 })
                 return totalNum
             } else {

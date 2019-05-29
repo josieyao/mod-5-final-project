@@ -15,6 +15,7 @@ const mapDispatchToProps = {
     return { type: "LOAD_TEMPORARY_CART", cartItems: cartItems }
   },
   addItemToCart: product => {
+    console.log("wat")
     return { type: "ADD_ITEM_TO_CART", cartItems: product }
   },
   selectProductItem: id => dispatch => {
@@ -28,6 +29,7 @@ const mapDispatchToProps = {
     return { type: "UPDATE_TOTAL_COST", totalCost: product.price }
   },
   addOneToQuantity: id => {
+    console.log(id)
     return { type: "INCREMENT_QUANTITY", id: id };
   }
 
@@ -62,8 +64,9 @@ export default connect(mapStateToProps, mapDispatchToProps)(
           })
         })
           .then(res => res.json())
-          .then(product => {
-            this.props.addOneToQuantity(product.id)
+          .then(products => {
+            const itemAlreadyInCart = products.find(item => item.id === product.id)
+            itemAlreadyInCart ? this.props.addOneToQuantity(product.id) : this.props.addItemToCart(product)
           })
       } else {
         const itemAlreadyInCart = this.props.cartItems.find(item => item.id === product.id)
@@ -73,6 +76,8 @@ export default connect(mapStateToProps, mapDispatchToProps)(
     }
 
     render() {
+      // console.log(this.props.cartItems)
+      // console.log(this.props.currentProduct)
       if (!this.props.currentProduct) return <h1>No item found</h1>;
       return (
         <div className="product-show-container">
@@ -92,15 +97,27 @@ export default connect(mapStateToProps, mapDispatchToProps)(
             <p>{this.props.currentProduct.description}</p>
             <br />
             <br />
-            <button onClick={() => this.addToCartButtonClicked(this.props.currentProduct)}>Add to Cart</button>
-            <br />
-            <br />
+            {this.props.cartItems.find(item => item.id === this.props.currentProduct.id) === undefined ?
+              <div>
+                <button onClick={() => this.addToCartButtonClicked(this.props.currentProduct)}>Add to Cart</button>
+                <br />
+                <br />
+              </div>
+              :
+              <div>
+                <p>Added to Cart</p>
+                <br />
+                <br />
+              </div>
+            }
+
+
             <Link to="/products">
               <button>Back to Products</button>
             </Link>
-
           </div>
         </div>
+        // </div>
       );
     }
   }

@@ -26,10 +26,11 @@ module.exports = {
     });
 
     // edit
-    app.get("/carts/:id", (req, res) => {
-      res.send("jk love u")
-    });
+    // app.get("/carts/:id", (req, res) => {
+    //   res.send("jk love u")
+    // });
 
+    //update 
     app.patch("/users/:id/carts", async (req, res) => {
       // console.log(req.body)
       // let carts = Cart.findAll({ where: { userId: req.body.userId }})
@@ -52,9 +53,6 @@ module.exports = {
       }
       res.send(cart)
     })
-    //1. app.patch(same address)  
-    // let cart = find the cart by product id
-    //update  Q
 
     //update
     app.patch("/carts/:id", async (req, res) => {
@@ -64,6 +62,7 @@ module.exports = {
       cart.update({ quantity: cart.quantity + 1 });
     });
 
+    //create
     app.post("/carts", async (req, res) => {
       let token = User.authorize(req)
       // console.log(req.body.userId)
@@ -73,10 +72,11 @@ module.exports = {
         //let response = JSON.parse(req.body.cart)
         // console.log(res)
         Promise.all(req.body.cart.map(async cartItem => {
+          console.log("i dont speak english")
           // console.log(cartItem.id)
           let product = await Product.findByPk(cartItem.id)
           let cart = await Cart.findOne({ where: { userId: req.body.userId, productId: product.id } })
-          console.log(cart)
+          // console.log(cart)
           if (cart) {
             let newQuantity = cart.quantity += 1
             cart.update({
@@ -89,12 +89,26 @@ module.exports = {
         }))
         let user = await User.findByPk(token.id)
         let products = await user.getProducts()
-        console.log(user)
+        // console.log(user)
         res.json(products)
       } catch (error) {
         res.send(error)
       }
     })
+
+    //delete
+    app.delete("/users/:id/carts", async (req, res) => {
+      // console.log(req.body)
+      // let carts = Cart.findAll({ where: { userId: req.body.userId }})
+      //console.log(req.params)
+      Cart.destroy({
+        where: {
+          userId: req.params.id,
+          productId: req.query.product
+        }
+      })
+      res.status(200).json({ status: "success" })
+    });
   }
 }
 

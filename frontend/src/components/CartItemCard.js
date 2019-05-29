@@ -28,10 +28,7 @@ const mapDispatchToProps = {
   }
 };
 
-export default connect(
-  mapStateToProps,
-  mapDispatchToProps
-)(
+export default connect(mapStateToProps, mapDispatchToProps)(
   class CartItemCard extends React.Component {
     
     quantityButtonClicked = (product, action) => {
@@ -54,7 +51,7 @@ export default connect(
         } else {
              this.props.addOneToQuantity(product)
           }
-        }
+    }
 
     getCurrentSubtotal = () => {
       if(this.props.currentUser){
@@ -66,12 +63,38 @@ export default connect(
         // console.log(roundedSubtotal)
         return roundedSubtotal
       } else {
-        let subtotal = this.props.price * this.props.quantity
+        let subtotal = this.props.price * this.props.cart.quantity
         let roundedSubtotal = Math.floor(subtotal * 100) / 100
         return roundedSubtotal
       }
     }
 
+    deleteButtonClicked = (product) => {
+      if(this.props.currentUser){
+        // console.log(this.props.currentUser.id)
+        fetch(`http://localhost:3000/users/${this.props.currentUser.id}/carts?product=${product}`, {
+                method: "DELETE",
+                headers: {
+                  "Content-Type": "application/json"
+                },
+                body: JSON.stringify({
+                  product: product
+                })
+              })
+          .then( res => res.json())
+          .then( data => {
+            console.log(data)
+
+            //needs to decrease cart quantity and remove item from card
+            if (data.status === "success") {
+              this.props.deleteItemFromCart(product)
+            }
+          })
+        } else {
+            //needs to decrease cart quantity and remove item from card
+            this.props.deleteItemFromCart(product)
+          }
+      }
 
     render() {
 
@@ -96,7 +119,7 @@ export default connect(
             <br/>
             <p>Subtotal ${this.getCurrentSubtotal()}</p>
             <br/>
-            <DeleteRoundedIcon style={{cursor: 'pointer'}} onClick={ () => this.props.deleteItemFromCart(this.props.id)}></DeleteRoundedIcon>
+            <DeleteRoundedIcon style={{cursor: 'pointer'}} onClick={ () => this.deleteButtonClicked(this.props.id)}/*this.props.deleteItemFromCart(this.props.id)}*/></DeleteRoundedIcon>
             <br/>
             <br/>
           </div>
@@ -104,4 +127,4 @@ export default connect(
       );
     }
   }
-);
+)
