@@ -30,7 +30,7 @@ const reducer = (currentState, action) => {
     case "ADD_ITEM_TO_CART":
       newState = {
         ...currentState,
-        cartItems: [...currentState.cartItems, { ...action.cartItems, quantity: 1 }]
+        cartItems: [...currentState.cartItems, { ...action.cartItems, cart: {quantity: 1 }}]
       };
       break;
     case "DELETE_ITEM_FROM_CART":

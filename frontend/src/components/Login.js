@@ -74,7 +74,7 @@ export default connect(mapStateToProps, mapDispatchToProps)(
       })
         .then(res => res.json())
         .then((cartData) => {
-          console.log(typeof cartData)
+          console.log(Array.isArray(cartData))
           this.props.loadCartItems(cartData)
           // cartData.forEach( item => this.props.loadCartItems(item))
 

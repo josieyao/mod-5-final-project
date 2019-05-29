@@ -8,6 +8,9 @@ const mapStateToProps = (state) => ({
 })
 
 const mapDispatchToProps = {
+    clearCart: () => {
+        return { type: "LOAD_TEMPORARY_CART", cartItems: [] };
+      },
     logOutUser: () => {
         return { type: "CURRENT_USER", currentUser: null };
       },
@@ -17,8 +20,9 @@ export default withRouter(connect(mapStateToProps, mapDispatchToProps)(
     class LogInOutButton extends React.Component {
 
         onLogOutClick = () => {
-            this.props.logOutUser()
             localStorage.clear()
+            this.props.logOutUser()
+            this.props.clearCart()
             this.props.history.push("/products")
         }
 

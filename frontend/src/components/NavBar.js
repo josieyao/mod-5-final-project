@@ -22,7 +22,7 @@ export default connect(mapStateToProps, mapDispatchToProps)(
                 this.props.cartItems.map(item => {
                     // console.log(item.quantity)
                     // console.log(item.cart)
-                    totalNum += item.quantity
+                    item.cart ? totalNum += item.cart.quantity : totalNum += item.quantity
                 })
                 return totalNum
             } else if( !this.props.currentUser && this.props.cartItems.length > 0 ){
