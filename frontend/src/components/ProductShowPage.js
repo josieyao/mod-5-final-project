@@ -12,7 +12,7 @@ const mapStateToProps = state => {
 
 const mapDispatchToProps = {
   loadCartItems: cartItems => {
-    return { type: "LOAD_TEMPORARY_CART", cartItems: cartItems}
+    return { type: "LOAD_TEMPORARY_CART", cartItems: cartItems }
   },
   addItemToCart: product => {
     return { type: "ADD_ITEM_TO_CART", cartItems: product }
@@ -25,7 +25,7 @@ const mapDispatchToProps = {
       );
   },
   updateTotalCost: product => {
-    return { type: "UPDATE_TOTAL_COST", totalCost: product.price}
+    return { type: "UPDATE_TOTAL_COST", totalCost: product.price }
   },
   addOneToQuantity: id => {
     return { type: "INCREMENT_QUANTITY", id: id };
@@ -37,35 +37,39 @@ export default connect(mapStateToProps, mapDispatchToProps)(
   class ProductShowPage extends React.Component {
 
     componentDidMount() {
-        this.props.selectProductItem(this.props.match.params.id);
+      this.props.selectProductItem(this.props.match.params.id);
     }
 
     addToCartButtonClicked = (product) => {
       // this.props.addItemToCart(product)
       this.props.updateTotalCost(product)
 
-      const itemAlreadyInCart = this.props.cartItems.find( item => item.id === product.id)
-      itemAlreadyInCart ? this.props.addOneToQuantity(product.id) : this.props.addItemToCart(product)
+      // const itemAlreadyInCart = this.props.cartItems.find( item => item.id === product.id)
+      // itemAlreadyInCart ? this.props.addOneToQuantity(product.id) : this.props.addItemToCart(product)
 
-        if(this.props.currentUser){
-            fetch('http://localhost:3000/carts', {
-              method: "POST",
-              headers: {
-                "Content-Type": "application/json",
-                "Authorization": `Bearer ${localStorage.getItem('token')}`
-              },
-              body: JSON.stringify({
-                productId: product.id,
-                userId: this.props.currentUser.id
-              })
-            })
-            .then( res => res.json())
-            .then( product => {
-              this.props.addOneToQuantity(product.id)
-            })
-        } else {
-          this.props.addOneToQuantity(product.id)
-        }
+      if (this.props.currentUser) {
+        console.log([this.props.currentProduct])
+        fetch('http://localhost:3000/carts', {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+            "Authorization": `Bearer ${localStorage.getItem('token')}`
+          },
+          body: JSON.stringify({
+            cart: [this.props.currentProduct],
+            productId: product.id,
+            userId: this.props.currentUser.id
+          })
+        })
+          .then(res => res.json())
+          .then(product => {
+            this.props.addOneToQuantity(product.id)
+          })
+      } else {
+        const itemAlreadyInCart = this.props.cartItems.find(item => item.id === product.id)
+        itemAlreadyInCart ? this.props.addOneToQuantity(product.id) : this.props.addItemToCart(product)
+        // this.props.addOneToQuantity(product.id)
+      }
     }
 
     render() {
@@ -82,19 +86,19 @@ export default connect(mapStateToProps, mapDispatchToProps)(
           </div>
           <div className="product-details">
             <h4>{this.props.currentProduct.name}</h4>
-            <br/>
+            <br />
             <p>${this.props.currentProduct.price}</p>
-            <br/>
+            <br />
             <p>{this.props.currentProduct.description}</p>
-            <br/>
-            <br/>
+            <br />
+            <br />
             <button onClick={() => this.addToCartButtonClicked(this.props.currentProduct)}>Add to Cart</button>
-            <br/>
-            <br/>
+            <br />
+            <br />
             <Link to="/products">
-            <button>Back to Products</button>
+              <button>Back to Products</button>
             </Link>
-            
+
           </div>
         </div>
       );

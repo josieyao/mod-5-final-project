@@ -27,9 +27,6 @@ module.exports = {
       price: {
           type: Sequelize.DOUBLE(4,2)
       },
-      quantity: {
-          type: Sequelize.INTEGER
-      },
       category: {
           type: Sequelize.STRING
       },

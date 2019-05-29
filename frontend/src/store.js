@@ -4,13 +4,15 @@ import ReduxThunk from "redux-thunk";
 
 const initialState = {
   products: [],
-  cartItems: JSON.parse(localStorage.getItem("cart")) || [],
+  cartItems: localStorage.getItem('cart') ? JSON.parse(localStorage.getItem("cart")) : [],
   currentProduct: {},
-  currentUser: {}
+  currentUser: null
+  // currentTotalCost: 0
 };
 
 const reducer = (currentState, action) => {
-  // console.log(action);
+  // console.log(localStorage.getItem("cart"))
+  // console.log(action)
   let newState;
   switch (action.type) {
     case "FETCH_PRODUCTS":
@@ -41,10 +43,18 @@ const reducer = (currentState, action) => {
       newState = {
         ...currentState,
         cartItems: currentState.cartItems.map(item =>
-          item.id === action.id ? { ...item, quantity: item.cart.quantity + 1 } : item
+          item.id === action.id ? { ...item, quantity: item.quantity + 1 } : item
         )
       };
       break;
+    case "SET_QUANTITY":
+          newState = {
+            ...currentState,
+            cartItems: currentState.cartItems.map(item =>
+              item.id === action.id ? { ...item, cart: {...item.cart, quantity: action.quantity }} : item
+            )
+          };
+          break;
     case "DECREMENT_QUANTITY":
         newState = {
           ...currentState,
@@ -53,6 +63,14 @@ const reducer = (currentState, action) => {
           )
         };
       break;
+      // case "UPDATE_CURRENT_TOTAL_COST":
+      //     newState = {
+      //       ...currentState,
+      //       currentTotalCost: currentState.cartItems.map(item =>
+      //         item.id === action.id ? { ...item, quantity: Math.max(item.quantity - 1, 1) } : item
+      //       )
+      //     };
+      //   break;
     case "LOAD_TEMPORARY_CART":
       newState = {
         ...currentState,
@@ -69,7 +87,8 @@ const reducer = (currentState, action) => {
       newState = currentState;
   }
   // console.log(action.type);
-  localStorage.setItem("cart", JSON.stringify(newState.cartItems));
+  localStorage.setItem("cart", JSON.stringify(newState.cartItems))
+  // localStorage.setItem("currentUser", JSON.stringify(newState.currentUser));
   return newState;
 };
 

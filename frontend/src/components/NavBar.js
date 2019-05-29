@@ -3,20 +3,42 @@ import { Link } from 'react-router-dom'
 import { connect } from 'react-redux'
 
 const mapStateToProps = (state) => ({
-    cartItems: state.cartItems
+    cartItems: state.cartItems,
+    currentUser: state.currentUser
 })
 
 const mapDispatchToProps = {
-
+    // getCurrentCartQuantity: total => {
+    //     return { type: "UPDATE_TOTAL_COST", totalQuantity: total }
 }
 
 export default connect(mapStateToProps, mapDispatchToProps)(
 
     class NavBar extends React.Component {
 
-        render(){
-        const cartQuantity = this.props.cartItems.reduce((acc, item) => {return acc + item.quantity }, 0)
+        calculateQuantity = () => {
+            if (this.props.currentUser && this.props.cartItems.length > 0) {
+                let totalNum = 0
+                this.props.cartItems.map(item => {
+                    // console.log(item.quantity)
+                    // console.log(item.cart)
+                    totalNum += item.quantity
+                })
+                return totalNum
+            } else if( !this.props.currentUser && this.props.cartItems.length > 0 ){
+                let totalNum = 0
+                this.props.cartItems.map(item => {
+                    totalNum += item.quantity
+                })
+                return totalNum
+            } else {
+                let totalNum = 0
+                return totalNum
+            }
+        }
 
+        render(){
+      
             return(
                 <div className="navbar-container">
                     <div className="nav-links">
@@ -36,7 +58,7 @@ export default connect(mapStateToProps, mapDispatchToProps)(
                             <li>Kits</li>
                         </Link>
                         <Link to="/cart">
-                            <i className="fas fa-shopping-cart">({cartQuantity})</i>
+                            <i className="fas fa-shopping-cart">({this.calculateQuantity()})</i>
                         </Link>
                     </div>
                 </div>

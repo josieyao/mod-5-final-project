@@ -25,9 +25,6 @@ const Product = sequelize.define('product', {
     price: {
         type: DOUBLE(4,2)
     },
-    quantity: {
-        type: INTEGER
-    },
     category: {
         type: STRING
     }

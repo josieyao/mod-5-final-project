@@ -3,31 +3,14 @@ import { Link } from 'react-router-dom'
 import { connect } from 'react-redux'
 
 const mapStateToProps = (state) => ({
-    products: state.products
+    products: state.products,
+    currentUser: state.currentUser
 })
 
 const mapDispatchToProps = {
-    // userLoginFetch: user => dispatch => {
-    //     fetch("http://localhost:3000/login", {
-    //     method: "POST",
-    //     headers: {
-    //         'Content-Type': 'application/json',
-    //     Accept: 'application/json',
-    //     },
-    //     body: JSON.stringify({user})
-    // })
-    //   .then(res => res.json())
-    //   .then(data => {
-    //     if (data.message) {
-    //       // handle invalid login credentials.
-    //       // This assumes your Rails API will return a JSON object with a key of
-    //       // 'message' if there is an error
-    //     } else {
-    //       localStorage.setItem("token", data.jwt)
-    //       dispatch({ type: "LOGIN_USER", user: data.user})
-    //     }
-    //   }
-    // }
+    setCurrentUser: user => {
+        return { type: "CURRENT_USER", currentUser: user };
+    }
 }
 
 
@@ -64,6 +47,8 @@ export default connect(mapStateToProps, mapDispatchToProps)(
             })
             .then(res=> res.json())
             .then(user => {
+                console.log(user)
+                this.props.setCurrentUser(user.user)
                 localStorage.setItem('token', user.auth_token)
             })
         }
@@ -101,7 +86,9 @@ export default connect(mapStateToProps, mapDispatchToProps)(
                             <br/>
                             <br/>
 
-                            <button button className="tiny ui inverted red basic button" type="submit">Submit</button>
+                            {/* <Link to="/login"> */}
+                                <button button className="tiny ui inverted red basic button" type="submit">Submit</button>
+                            {/* </Link> */}
                             <br/>
                             <br/>
 

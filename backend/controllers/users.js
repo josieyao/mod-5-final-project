@@ -19,6 +19,21 @@ module.exports = {
   },
 
   http: app => {
+    app.get('/authorize', async (req, res, next) => {
+      let token = req.headers['x-access-token'] || req.headers['authorization']; // Express headers are auto converted to lowercase
+      if (token.startsWith('Bearer ')) {
+        // Remove Bearer from string
+        token = token.slice(7, token.length);
+      }
+      let userToken = jwt.decode(token)
+      let user = await User.findByPk(userToken.id, {
+        attributes: {exclude: ['password_digest', 'token']}
+      })
+      res.json({
+        user: user
+      })
+    })
+
     // index
     app.get("/users", (req, res) => {
       User.findAll().then(users => {
@@ -72,7 +87,7 @@ module.exports = {
       }).then(user => {
         // user.password = req.body.password
         // user.save()
-        res.json({ auth_token: user.token })
+        res.json({ user: user, auth_token: user.token })
       })
     })
 

@@ -52,15 +52,15 @@ export default connect(mapStateToProps, mapDispatchToProps)(
           localStorage.setItem("token", userData.token);
 
           this.props.setCurrentUser(userData)
-          this.handleLocalStorageCart();
+          if (this.props.cartItems > 0 || {})
+            this.handleLocalStorageCart();
           this.props.history.push('/products')
         });
     };
 
     handleLocalStorageCart = () => {
       // console.log(localStorage.getItem("token"))
-      let cart = localStorage.cart;
-      //console.log(cart);
+      //let cart = localStorage.cart;
       fetch("http://localhost:3000/carts", {
         method: "POST",
         headers: {
@@ -68,13 +68,13 @@ export default connect(mapStateToProps, mapDispatchToProps)(
           "Authorization": `Bearer ${localStorage.getItem("token")}`
         },
         body: JSON.stringify({
-          cart: cart,
+          cart: this.props.cartItems,
           userId: this.props.currentUser.id
         })
       })
         .then(res => res.json())
         .then((cartData) => {
-          console.log(cartData)
+          console.log(typeof cartData)
           this.props.loadCartItems(cartData)
           // cartData.forEach( item => this.props.loadCartItems(item))
 

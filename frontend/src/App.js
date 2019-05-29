@@ -12,9 +12,10 @@ import HomeContainer from "./components/HomeContainer";
 import ProductShowPage from "./components/ProductShowPage";
 import CartContainer from "./components/CartContainer";
 import KitchenList from "./components/KitchenList"
+import PrivateRoute from './components/PrivateRoute'
 import Footer from "./components/Footer"
 import NoPageFound from "./components/NoPageFound"
-import { Router, Switch, Route, Redirect } from "react-router-dom";
+import { Router, Switch } from "react-router-dom";
 import history from "./history";
 import { connect } from 'react-redux'
 
@@ -115,15 +116,16 @@ class App extends React.Component {
             <NavBar />
             <ImageContainer />
             <Switch>
-              <Route exact path="/" component={HomeContainer}/>
-              <Route path="/login" component={Login}/>
-              <Route exact path="/products" component={MainContainer}/>
-              <Route exact path="/products/:id" component={ProductShowPage} />
-              <Route exact path="/products/kitchen" component={KitchenList} />
-              <Route path="/cart" component={CartContainer}/>
-              <Route path="/checkout" component={Login}/>
-              <Route path="/registration" component={Registration}/>
-              <Route component={NoPageFound}/>
+              <PrivateRoute exact path="/" component={HomeContainer}/>
+              <PrivateRoute path="/login" component={Login}/>
+              <PrivateRoute path="/products" component={MainContainer} exact />
+              {/* <PrivateRoute exact path="/products" component={MainContainer}/> */}
+              <PrivateRoute exact path="/products/:id" component={ProductShowPage} />
+              <PrivateRoute exact path="/products/kitchen" component={KitchenList} />
+              <PrivateRoute path="/cart" component={CartContainer}/>
+              <PrivateRoute path="/checkout" component={Login}/>
+              <PrivateRoute path="/registration" component={Registration}/>
+              <PrivateRoute component={NoPageFound}/>
             </Switch>
             {/* <Footer/> */}
           </div>

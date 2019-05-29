@@ -13,6 +13,9 @@ const mapDispatchToProps = {
   addOneToQuantity: id => {
     return { type: "INCREMENT_QUANTITY", id: id };
   },
+  setQuantity: (id, quantity) => {
+    return { type: "SET_QUANTITY", id: id, quantity: quantity };
+  },
   deleteOneToQuantity: id => {
     return { type: "DECREMENT_QUANTITY", id: id };
   },
@@ -20,6 +23,7 @@ const mapDispatchToProps = {
     return { type: "UPDATE_TOTAL_COST" };
   },
   deleteItemFromCart: id => {
+      alert('Are you sure you want to delete this item?')
       return { type: "DELETE_ITEM_FROM_CART", id: id} 
   }
 };
@@ -29,31 +33,49 @@ export default connect(
   mapDispatchToProps
 )(
   class CartItemCard extends React.Component {
+    
+    quantityButtonClicked = (product, action) => {
+    if(this.props.currentUser){
+      // console.log(this.props.currentUser.id)
+        fetch(`http://localhost:3000/users/${this.props.currentUser.id}/carts?product=${product}`, {
+                method: "PATCH",
+                headers: {
+                  "Content-Type": "application/json"
+                },
+                body: JSON.stringify({
+                  action: action
+                })
+              })
+          .then( res => res.json())
+          .then( data => {
+            // console.log('data')
+            this.props.setQuantity(product, data.quantity)
+          })
+        } else {
+             this.props.addOneToQuantity(product)
+          }
+        }
 
-  //   incrementButtonClicked = (product) => {
-  //   if(this.props.currentUser){
-  //       fetch(`http://localhost:3000/carts/${id}`, {
-  //         method: "PATCH",
-  //         headers: {
-  //           "Content-Type": "application/json"
-  //         },
-  //         body: JSON.stringify({
-  //           productId: product.id,
-  //           userId: this.props.currentUser.id
-  //       })
-  //       .then( res => res.json())
-  //       .then( product => {
-  //         this.props.addOneToQuantity(product.id)
-  //       })
-  //   })} else {
-  //     this.props.addOneToQuantity(product.id)
-  //   }
-  // }
+    getCurrentSubtotal = () => {
+      if(this.props.currentUser){
+        console.log(this.props.price)
+        console.log(this.props.cart.quantity)
+        
+        let subtotal = this.props.price * this.props.cart.quantity
+        let roundedSubtotal = Math.floor(subtotal * 100) / 100
+        // console.log(roundedSubtotal)
+        return roundedSubtotal
+      } else {
+        let subtotal = this.props.price * this.props.quantity
+        let roundedSubtotal = Math.floor(subtotal * 100) / 100
+        return roundedSubtotal
+      }
+    }
+
 
     render() {
-    const subtotal = this.props.price * this.props.quantity
-    const roundedSubtotal = Math.floor(subtotal * 100) / 100
-      console.log(this.props.quantity)
+
+    // console.log(this.props.cartItems)
       return (
         <div className="cart-item-card">
           <img src={this.props.image1} alt=" " height="200" width="200" />
@@ -65,14 +87,14 @@ export default connect(
             <br/>
             <div className="add-and-minus-quantity">
               
-              <i className="far fa-minus-square" style={{cursor: 'pointer', marginRight: '10px'}} onClick={() => this.props.deleteOneToQuantity(this.props.id)}></i>
+              <i className="far fa-minus-square" style={{cursor: 'pointer', marginRight: '10px'}} onClick={() => this.quantityButtonClicked(this.props.id, "decrement")}></i>
 
-              <p>{this.props.quantity}</p>
+              <p>{this.props.quantity || this.props.cart.quantity}</p>
 
-              <i className="far fa-plus-square" style={{cursor: 'pointer', marginLeft: '10px'}} onClick={() => this.props.addOneToQuantity(this.props.id)}></i>
+              <i className="far fa-plus-square" style={{cursor: 'pointer', marginLeft: '10px'}} onClick={() => this.quantityButtonClicked(this.props.id, "increment")}/*this.props.addOneToQuantity(this.props.id)}*/></i>
             </div>
             <br/>
-            <p>Subtotal ${roundedSubtotal}</p>
+            <p>Subtotal ${this.getCurrentSubtotal()}</p>
             <br/>
             <DeleteRoundedIcon style={{cursor: 'pointer'}} onClick={ () => this.props.deleteItemFromCart(this.props.id)}></DeleteRoundedIcon>
             <br/>

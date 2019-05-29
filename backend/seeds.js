@@ -423,7 +423,7 @@ const users = [
 // ];
 
 // let product = Product.findByPk(1).then(product => product)
-//let tom = User.create({first_name: "Tom", last_name: "Hanks", email: 'tom@tom.com', username: 'tom', password: 'tom'})
+// let tom = User.create({first_name: "Tom", last_name: "Hanks", email: 'tom@tom.com', username: 'tom', password: 'tom'})
 
 sequelize.drop().then(() => {
   sequelize.sync().then(() => {
@@ -436,10 +436,15 @@ sequelize.drop().then(() => {
   });
 });
 
-//let tom = User.create({first_name: "Tom", last_name: "Hanks", email: 'tom@tom.com', username: 'tom', password: 'tom'}).then(user => product.addUser(user))
+let user = User.create({ first_name: "Tom", last_name: "Hanks", email: 'tom@tom.com', username: 'tom', password_digest: 'tom' }).then(user => {
+  user.addProduct([1])
+  user.save()
+})
+
+// let tom = User.create({first_name: "Tom", last_name: "Hanks", email: 'tom@tom.com', username: 'tom', password: 'tom'}).then(user => product.addUser(user))
 
 // let tom = User.findByPk(1).then(user => console.log(user))
-//console.log(`user: ${tom}, product: ${product}`)
+// console.log(`user: ${tom}, product: ${product}`)
 
 // let product1 = Product.findByPk(1).then(product => product )
 // let product2 = Product.findByPk(2).then(product => product)
