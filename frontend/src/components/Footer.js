@@ -1,5 +1,4 @@
 import React from 'react'
-import { Link } from 'react-router-dom'
 
 export default class Footer extends React.Component {
 
@@ -7,8 +6,11 @@ export default class Footer extends React.Component {
             return(
                 <div className="footer-container">
                     <div className="footer">
-                        <li>About</li>
-
+                        <li><i class="fab fa-instagram"></i></li>
+                        <li><i class="fab fa-pinterest-square"></i></li>
+                        <li>© 2019 Wasteless</li>
+                        <li><i class="fab fa-facebook-square"></i></li>
+                        <li><i class="fab fa-twitter-square"></i></li>
                     </div>
                 </div>
             )

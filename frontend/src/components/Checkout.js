@@ -5,12 +5,16 @@ import Button from '@material-ui/core/Button';
 
 const mapStateToProps = (state) => ({
     products: state.products,
-    currentUser: state.currentUser
+    currentUser: state.currentUser,
+    cartItems: state.cartItems
 })
 
 const mapDispatchToProps = {
     setCurrentUser: user => {
         return { type: "CURRENT_USER", currentUser: user };
+    },
+    clearCartItems: () => {
+        return { type: "LOAD_TEMPORARY_CART", cartItems: []  };
     }
 }
 
@@ -24,7 +28,7 @@ export default connect(mapStateToProps, mapDispatchToProps)(
             const elements = stripe.elements()
             this.card = elements.create('card')
             setTimeout(() => document.querySelector('iframe').style.minWidth = '45%', 500)
-            console.log(document.querySelector('iframe').style.width)
+            // console.log(document.querySelector('iframe').style.width)
             // console.log('wat', this.card)
             this.card.mount('#card-element')
         }
@@ -63,6 +67,7 @@ export default connect(mapStateToProps, mapDispatchToProps)(
 
                 }
                 alert('Transaction completed!')
+                this.props.clearCartItems()
                 this.props.history.push("/products")
             }
 
@@ -85,19 +90,21 @@ export default connect(mapStateToProps, mapDispatchToProps)(
                             <input id="cardholder-name" name="cardholder-name" type="text" placeholder="Ex. John Smith" style={{ width: '200px' }} /><br /><br />
 
                             {/* <!-- placeholder for Elements --> */}
-                            <div id="card-element" >
-                                <label for="payment"><b>Credit Card Number</b></label><br />
-                                <input id="payment" name="payment" type="text" placeholder="Please do not include spaces/dashes" style={{ width: '200px' }} /><br /><br />
+                            <div style={{"margin-left": "36%"}}>
+                                <div id="card-element">
+                                    {/* <label for="payment"><b>Credit Card Number</b></label><br />
+                                    <input id="payment" name="payment" type="text" placeholder="Please do not include spaces/dashes" style={{ width: '200px' }} /><br /><br />
 
-                                <label for="payment-mm"><b>Month</b></label><br />
-                                <input id="payment-mm" name="payment-mm" type="text" placeholder="MM" style={{ width: '200px' }} /><br /><br />
+                                    <label for="payment-mm"><b>Month</b></label><br />
+                                    <input id="payment-mm" name="payment-mm" type="text" placeholder="MM" style={{ width: '200px' }} /><br /><br />
 
-                                <label for="payment-yy"><b>Year</b></label><br />
-                                <input id="payment-yy" name="payment-yy" type="text" placeholder="YY" style={{ width: '200px' }} /><br /><br />
+                                    <label for="payment-yy"><b>Year</b></label><br />
+                                    <input id="payment-yy" name="payment-yy" type="text" placeholder="YY" style={{ width: '200px' }} /><br /><br />
 
-                                <label for="payment-cvc"><b>CVC</b></label><br />
-                                <input id="payment-cvc" name="payment-cvc" type="text" placeholder="CVC" style={{ width: '200px' }} /><br /><br />
+                                    <label for="payment-cvc"><b>CVC</b></label><br />
+                                    <input id="payment-cvc" name="payment-cvc" type="text" placeholder="CVC" style={{ width: '200px' }} /><br /><br /> */}
 
+                                </div>
                             </div>
                             <br/>
                             <Button variant="outlined" size="small" color="primary" style={{textDecoration: 'none', color: 'black', marginLeft: '10px', cursor: 'pointer', marginBottom: '50px'}} onClick={onAdd} id="card-button" data-secret="{{ client_secret }}">

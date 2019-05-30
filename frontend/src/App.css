@@ -273,13 +273,24 @@ a:hover, a:visited, a:link, a:active {
 
 /* FOOTER */
 .footer-container{
-  position: fixed;
+  /* position: fixed;
   left: 0;
-  bottom: 0;
+  bottom: 0; */
   width: 100%;
-  background-color: rgb(149, 247, 209);
-  color: white;
+  padding: 10px;
+  background-color: rgba(241, 248, 244, 0.673);
+  /* border: solid; */
+  color: black;
   text-align: center;
+  border: solid 2px;
+}
+
+.footer {
+  display: flex;
+  list-style: none;
+  justify-content: space-around;
+  font-size: 15px;
+  cursor: pointer;
 }
 
 /* IMAGE CONTAINER SLIDER */
