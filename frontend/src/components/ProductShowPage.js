@@ -66,13 +66,15 @@ export default connect(mapStateToProps, mapDispatchToProps)(
         })
           .then(res => res.json())
           .then(products => {
-            const itemAlreadyInCart = products.find(item => item.id === product.id)
-            itemAlreadyInCart ? this.props.addOneToQuantity(product.id) : this.props.addItemToCart(product)
+            console.log(this.props.cartItems)
+            console.log(products)
+            this.props.loadCartItems(products)
+            // const itemAlreadyInCart = products.find(item => item.id === product.id)
+            // itemAlreadyInCart ? this.props.addOneToQuantity(product.id) : this.props.addItemToCart(product)
           })
       } else {
         const itemAlreadyInCart = this.props.cartItems.find(item => item.id === product.id)
         itemAlreadyInCart ? this.props.addOneToQuantity(product.id) : this.props.addItemToCart(product)
-        // this.props.addOneToQuantity(product.id)
       }
     }
 
@@ -98,13 +100,13 @@ export default connect(mapStateToProps, mapDispatchToProps)(
             <br />
             {this.props.cartItems.find(item => item.id === this.props.currentProduct.id) === undefined ?
               <div>
-                <Button variant="outlined" size="small" color="primary" style={{textDecoration: 'none', color: 'black'}} onClick={() => this.addToCartButtonClicked(this.props.currentProduct)}>Add to Cart</Button>
+                <Button variant="outlined" size="small" color="primary" style={{ textDecoration: 'none', color: 'black' }} onClick={() => this.addToCartButtonClicked(this.props.currentProduct)}>Add to Cart</Button>
                 <br />
                 <br />
               </div>
               :
               <div>
-                <p style={{fontWeight: 'bold'}}>Added to Cart</p>
+                <p style={{ fontWeight: 'bold' }}>Added to Cart</p>
                 <br />
                 <br />
               </div>
@@ -112,7 +114,7 @@ export default connect(mapStateToProps, mapDispatchToProps)(
 
 
             <Link to="/products">
-            <Button variant="outlined" size="small" color="primary" style={{textDecoration: 'none', color: 'black'}}>Back to Products</Button>
+              <Button variant="outlined" size="small" color="primary" style={{ textDecoration: 'none', color: 'black' }}>Back to Products</Button>
             </Link>
           </div>
         </div>

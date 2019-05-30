@@ -71,18 +71,18 @@ module.exports = {
         //console.log(req.body.cart)
         //let response = JSON.parse(req.body.cart)
         // console.log(res)
-        Promise.all(req.body.cart.map(async cartItem => {
+        await Promise.all(req.body.cart.map(async cartItem => {
           // console.log(cartItem.id)
           let product = await Product.findByPk(cartItem.id)
           let cart = await Cart.findOne({ where: { userId: req.body.userId, productId: product.id } })
           // console.log(cart)
           if (cart) {
             let newQuantity = cart.quantity += 1
-            cart.update({
+            await cart.update({
               quantity: newQuantity
             })
           } else {
-            product.addUser([token.id])
+            await product.addUser([token.id])
             // await product.addUser([token.id])
           }
         }))
