@@ -51,6 +51,17 @@ const products = [
     category: "Kitchen"
   },
   {
+    name: "Beige French Net Bag",
+    image1:
+      "https://cdn.shopify.com/s/files/1/1721/9289/products/beige_net_bag_2_460x.jpg?v=1557184702",
+    image2: "https://cdn.shopify.com/s/files/1/1721/9289/products/Filt_Beige_4_460x.jpg?v=1557184702",
+    image3: null,
+    description:
+      "The beige French Net Bag is perfect companion for the nature lover. Light and versatile, the bag fits comfortably over your shoulder and expands to carry books, fresh produce, wildflowers and other essentials for a day out exploring. Filt, formed in 1860, knits and stitches these quality bags from 100% cotton in Normandy, France.",
+    price: 19.99,
+    category: "Kitchen"
+  },
+  {
     name: "Chemex Reusable Coffee Filters, 3 cup",
     image1:
       "https://cdn.shopify.com/s/files/1/1721/9289/products/coffee_sock_3A_e4df4fb7-75b7-48f4-9203-b885ff54691d_900x.jpg?v=1556642803",
@@ -238,17 +249,6 @@ const products = [
     category: "Bathroom"
   },
   {
-    name: "Menstrual Cup",
-    image1:
-      "https://cdn.shopify.com/s/files/1/1797/9639/products/purple_menstrual_cup_1_1512x.jpg?v=1533074194",
-    image2: "https://cdn.shopify.com/s/files/1/1797/9639/products/menstrual_cup_comparison_1512x.jpg?v=1533074194",
-    image3: "https://cdn.shopify.com/s/files/1/1797/9639/products/Clean_Planetware_Tongue_Scraper_2_1512x.jpg?v=1529519641",
-    description:
-      "Bell-shaped, reusable menstrual cup that gives you a comfortable, safe, odorless and eco-friendly period for up to 12 hours a day. Never buy a disposable pad or tampon again (take that pink tax!). Thanks to companies like Lunette, menstrual cups are a great option for any menstruating human looking to have a more sustainable, economical and healthier period. The cup saves the planet from millions of disposable period products ending up in the landfills.",
-    price: 39.99,
-    category: "Bathroom"
-  },
-  {
     name: "Glass Soap Dispensers, Set of 2",
     image1:
       "https://cdn.shopify.com/s/files/1/1721/9289/products/soap_bottles_1_900x.jpg?v=1550612546",
@@ -401,7 +401,151 @@ const products = [
       "Hit the road (or sky) with these easy-to-use silicone travel bottles. 3 TSA-approved sizes make transporting your liquids a breeze. GoToob started the silicone bottle revolution by offering an alternative to hard plastic bottles that were messy and difficult to use. These travel bottles come in 3 TSA carry-on approved sizes and are great for transporting shampoo, lotions, and more. Small: 1.7oz, Medium: 2.5oz, Large: 3.4oz. Dishwasher safe.",
     price: 20.00,
     category: "Personal"
+  },
+  {
+    name: "Menstrual Cup",
+    image1:
+      "https://cdn.shopify.com/s/files/1/1797/9639/products/purple_menstrual_cup_1_1512x.jpg?v=1533074194",
+    image2: "https://cdn.shopify.com/s/files/1/1797/9639/products/menstrual_cup_comparison_1512x.jpg?v=1533074194",
+    image3: "https://cdn.shopify.com/s/files/1/1797/9639/products/Clean_Planetware_Tongue_Scraper_2_1512x.jpg?v=1529519641",
+    description:
+      "Bell-shaped, reusable menstrual cup that gives you a comfortable, safe, odorless and eco-friendly period for up to 12 hours a day. Never buy a disposable pad or tampon again (take that pink tax!). Thanks to companies like Lunette, menstrual cups are a great option for any menstruating human looking to have a more sustainable, economical and healthier period. The cup saves the planet from millions of disposable period products ending up in the landfills.",
+    price: 39.99,
+    category: "Bathroom"
+  },
+  {
+    name: "Zero Waste Starter Kit",
+    image1:
+      "https://cdn.shopify.com/s/files/1/1721/9289/products/starter_kit_new_674fc0cd-bd49-4a6a-b840-4ec70b862a89_540x.jpg?v=1540059935",
+    image2: null,
+    image3: null,
+    description:
+      "Jump start your plastic-free lifestyle with this zero waste starter kit. Each kit comes with a french cotton net bag, a set of cotton muslin and mesh produce bags, beeswax cloths, a stainless steel lunchbox, a stainless steel tumbler with straw and bamboo travel utensils. This is a great kit for eating out, travel and hitting the farmers' market. ",
+    price: 99.99,
+    category: "Kits"
+  },
+  {
+    name: "Zero Waste Lunch Kit With Tumbler",
+    image1:
+      "https://cdn.shopify.com/s/files/1/1721/9289/products/lunch_kit_1_540x.jpg?v=1539447943",
+    image2: null,
+    image3: null,
+    description:
+      "Dine in sustainable style with our zero waste lunch kit. This kit has everything you need for waste-free dining on the go—whether you're packing lunch for work or heading to a beach picnic. We love to keep this kit in our car or bag so we never are caught without our reusables when we want to grab a quick meal or beverage. Ditch one-time use cutlery, cups and boxes with the zero waste lunch kit!",
+    price: 50.00,
+    category: "Kits"
+  },
+  {
+    name: "Zero Waste Lunch Kit With Coffee Cup",
+    image1:
+      "https://cdn.shopify.com/s/files/1/1721/9289/products/lunch_kit_with_coffee_540x.jpg?v=1539448311",
+    image2: null,
+    image3: null,
+    description:
+      "Dine in sustainable style with our zero waste lunch kit. This kit has everything you need for waste-free dining on the go—whether you're packing lunch for work or heading to a beach picnic. We love to keep this kit in our car or bag so we never are caught without our reusables when we want to grab a quick meal or beverage. Ditch one-time use cutlery, cups and boxes with the zero waste lunch kit!",
+    price: 50.00,
+    category: "Kits"
+  },
+  {
+    name: "Double Edge Safety Razor Kit",
+    image1:
+      "https://cdn.shopify.com/s/files/1/1721/9289/products/razor_kit_1B_74fee194-5866-418b-b674-ad184b880f36_460x.jpg?v=1550612196",
+    image2: null,
+    image3: null,
+    description:
+      "The safety razor kit has everything you need to make the switch to a zero waste shaving routine. Each kit comes with a Rockwell safety razor, a stand to keep your razor dry and upright when not in use, a sheath to protect the razor when you're on-the-go and 25 individual razor blades. Quality and craftsmanship shows with this beautiful, waste-free razor kit. ",
+    price: 30.00,
+    category: "Kits"
+  },
+  {
+    name: "Zero Waste Self-Care Kit",
+    image1:
+      "https://cdn.shopify.com/s/files/1/1721/9289/products/self_care_new_1_460x.jpg?v=1558479033",
+    image2: null,
+    image3: null,
+    description:
+      "The perfect kit for someone who is looking to 'clean up' their beauty routine. Typical health and beauty products are designed for disposal and contribute to a significant portion of household waste. These beautifully crafted products are designed to be used again and again, and can be primarily be composted at the end of life. This is a great gift for a loved one, or yourself!",
+    price: 30.00,
+    category: "Kits"
+  },
+  {
+    name: "Zero Waste Mama Kit",
+    image1:
+      "https://cdn.shopify.com/s/files/1/1721/9289/products/new_mom_kit_460x.jpg?v=1558197752",
+    image2: null,
+    image3: null,
+    description:
+      "The zero waste mama kit is the perfect gift for the plastic-free new mom. Each kit comes with natural essentials for taking care of mama and babe, including a soft bristle hairbrush, milk & honey baby soap bar, diaper balm, nursing pads and nipple balm. ",
+    price: 30.00,
+    category: "Kits"
+  },
+  {
+    name: "Organic Lemongrass & Tea Tree Oil Deodorant",
+    image1:
+      "https://cdn.shopify.com/s/files/1/1721/9289/products/deo_1B_6c787e8b-e6c5-449e-88bb-bad28228dca5_460x.jpg?v=1550599404",
+    image2: null,
+    image3: null,
+    description:
+      "This organic deodorant helps you say fresh naturally with a clean lemongrass and tea tree oil scent. The deodorant uses natural ingredients with antibacterial properties to neutralize underarm odors, including coconut oil, baking soda, lemongrass and tea tree oil. Cornstarch soothes your skin and helps absorb perspiration. This product is cruelty-free, non-GMO and lasts about 6 months after opening.",
+    price: 18.99,
+    category: "Personal"
+  },
+  {
+    name: "Rose & Sage Face Mist",
+    image1:
+      "https://cdn.shopify.com/s/files/1/1721/9289/products/sage_1_460x.jpg?v=1550598371",
+    image2: null,
+    image3: null,
+    description:
+      "This gentle face mist includes rose geranium hydrosol, a gentle toner that helps revive the skin and keep pore clogging bacteria in check. Sage acts as a mild astringent and clears the air of bad vibes and jojoba oil keeps the skin supple. Rose & Sage Face Mist does not contain chemical preservatives and is best when used within 6 months of purchase. ",
+    price: 14.99,
+    category: "Personal"
+  },
+  {
+    name: "Wood Hairbrush",
+    image1:
+      "https://cdn.shopify.com/s/files/1/1721/9289/products/wood_hairbrush_1_92afd87d-3fac-4678-aa91-e364ad7b8aa4_460x.jpg?v=1550514704",
+    image2: null,
+    image3: null,
+    description:
+      "This wood hairbrush is a beautiful and sustainable alternative to plastic brushes. The brush features a wide, rectangular paddle with hornbeam pins and easy to grip beechwood handle. Made of beechwood and hornbeam. 9.5in long. Made in Germany",
+    price: 20.00,
+    category: "Personal"
+  },
+  {
+    name: "Wood Comb",
+    image1:
+      "https://cdn.shopify.com/s/files/1/1721/9289/products/wood_comb_1_423762b2-b71c-42bf-8aea-f3e91c24cb28_460x.jpg?v=1550340530",
+    image2: null,
+    image3: null,
+    description:
+      "This wood comb is a beautiful and sustainable alternative to plastic combs. The comb has anti-static properties and features fine teeth to tame hair. Made of beechwood. 6in long. Made in Germany.",
+    price: 10.99,
+    category: "Personal"
+  },
+  {
+    name: "All-Purpose Cream",
+    image1:
+      "https://cdn.shopify.com/s/files/1/1721/9289/products/all_cream_1B_460x.jpg?v=1550518189",
+    image2: null,
+    image3: null,
+    description:
+      "All Cream is a multi-versatile moisturizer for the face and body, a little goes a long way! The cream is a blend of hydrating and toning elements like aloe vera and rosewater, with moisturizers and skin protectors like organic sunflower oil and shea butter. It has a whipped consistency that goes on smooth and leaves your skin feeling soft and supple.",
+    price: 20.00,
+    category: "Personal"
+  },
+  {
+    name: "Biodegradable Bandaids",
+    image1:
+      "https://cdn.shopify.com/s/files/1/1721/9289/products/bandaids_1B_460x.jpg?v=1550598621",
+    image2: null,
+    image3: null,
+    description:
+      "Finally—a sustainable solution for protecting minor cuts and wounds! Made from 100% organic bamboo fibre with a hypoallergenic adhesive, these bandaids are free from irritating chemicals and are perfect for people with sensitive skin. Comes in a tube with 25 compostable bandages in one size.",
+    price: 8.99,
+    category: "Personal"
   }
+  
 ];
 
 const users = [

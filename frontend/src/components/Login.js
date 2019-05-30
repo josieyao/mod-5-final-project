@@ -61,7 +61,6 @@ export default connect(mapStateToProps, mapDispatchToProps)(
 
     handleLocalStorageCart = () => {
       // console.log(localStorage.getItem("token"))
-      //let cart = localStorage.cart;
       fetch("http://localhost:3000/carts", {
         method: "POST",
         headers: {
@@ -75,7 +74,6 @@ export default connect(mapStateToProps, mapDispatchToProps)(
       })
         .then(res => res.json())
         .then((cartData) => {
-          console.log(Array.isArray(cartData))
           this.props.loadCartItems(cartData)
           // cartData.forEach( item => this.props.loadCartItems(item))
 

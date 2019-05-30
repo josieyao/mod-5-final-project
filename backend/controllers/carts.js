@@ -72,7 +72,6 @@ module.exports = {
         //let response = JSON.parse(req.body.cart)
         // console.log(res)
         Promise.all(req.body.cart.map(async cartItem => {
-          console.log("i dont speak english")
           // console.log(cartItem.id)
           let product = await Product.findByPk(cartItem.id)
           let cart = await Cart.findOne({ where: { userId: req.body.userId, productId: product.id } })
