@@ -7,13 +7,12 @@ import ImageContainer from './ImageContainer'
 export default class MainContainer extends React.Component {
 
     render(){
-        // console.log(this.props)
 
         return(
             <div className="main-container">
                 {/* <NavBar/>
                 <ImageContainer/> */}
-                <ProductContainer/>
+                <ProductContainer {...this.props}/>
             </div>
         )
     }

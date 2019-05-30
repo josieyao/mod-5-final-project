@@ -49,13 +49,13 @@ export default connect(mapStateToProps, mapDispatchToProps)(
                         <Link to="/products/kitchen">
                             <li>Kitchen</li>
                         </Link>
-                        <Link to={"/bathroom"}>
+                        <Link to={"/products/bathroom"}>
                             <li>Bathroom</li>
                         </Link>
-                        <Link to="/bedroom">
-                            <li>Bedroom</li>
+                        <Link to="/products/personal">
+                            <li>Personal</li>
                         </Link>
-                        <Link to="/kits">
+                        <Link to="/products/kits">
                             <li>Kits</li>
                         </Link>
                         <Link to="/cart">

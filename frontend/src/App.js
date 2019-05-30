@@ -24,32 +24,6 @@ import { connect } from 'react-redux'
 
 // window.io = io;
 
-// const mapStateToProps = (state) => {
-//   return {}
-// }
-
-// const mapDispatchToProps = {
-//   fetchProducts: () => dispatch => {
-//     fetch('http://localhost:3000/products')
-//         .then( res => res.json())
-//         .then( products => dispatch({ type: 'FETCH_PRODUCTS', products: products }))
-//   }
-
-  // setProducts: dispatch => {
-  //   fetch("http://localhost:3000/products", {
-  //     headers: {
-  //       Authorization: `Bearer ${localStorage.getItem("token")}`
-  //     }
-  //   })
-  //   .then(res => res.json())
-  //   .then(products => {
-  //     dispatch({type: 'FETCH_PRODUCTS', products: products})
-  //   });
-  // }
-
-
-// }
-
 const mapStateToProps = (state) => ({
   products: state.products
 })
@@ -61,50 +35,15 @@ const mapDispatchToProps = {
 export default connect(mapStateToProps, mapDispatchToProps)(
 
 class App extends React.Component {
-  componentDidMount() {
-    // if(localStorage.getItem('token'))
+    componentDidMount() {
+      // if(localStorage.getItem('token'))
 
-    if(localStorage.getItem('cart'))
-      this.props.loadTempCart(JSON.parse(localStorage.getItem('cart')))
-      // this.props.loadTempCart({"SomeEcoThing": 3, "SomethingElse": 5})
-    else
-      localStorage.setItem('cart', JSON.stringify([]))
-    
-
-  //   this.props.fetchProducts()
-
-
-  //   io.emit('products.index', products => {
-  //     // console.log(products)
-  //     this.setState({ products })
-  //   })
-
-  //   io.on('products.update', products => {
-  //     this.setState({ products })
-  //   })
-
-  //   this.checkAuth();
-  }
-
-    // state = {
-    //   products: [],
-    //   users: []
-    // };
-
-    // checkAuth = () => {
-    //   if(localStorage.getItem('token') !== undefined || null){
-    //     fetch("http://localhost:3000/products", {
-    //       headers: {
-    //         Authorization: `Bearer ${localStorage.getItem("token")}`
-    //       }
-    //     })
-    //     .then(res => res.json())
-    //     .then(products => {
-    //       this.setState({products: products})
-    //     });
-    //   }
-    // };
-
+      if(localStorage.getItem('cart'))
+        this.props.loadTempCart(JSON.parse(localStorage.getItem('cart')))
+        // this.props.loadTempCart({"SomeEcoThing": 3, "SomethingElse": 5})
+      else
+        localStorage.setItem('cart', JSON.stringify([]))
+    }
 
     render() {
       // write a boolean function to conditionally render and use the "Redirect" from react router
@@ -119,9 +58,11 @@ class App extends React.Component {
             <Switch>
               <PrivateRoute exact path="/" component={HomeContainer}/>
               <PrivateRoute path="/login" component={Login}/>
-              <PrivateRoute path="/products" component={MainContainer} exact />
-              <PrivateRoute exact path="/products/kitchen" render={() => <MainContainer filter={"kitchen"}/>}/>
-              {/* <PrivateRoute exact path="/products" component={MainContainer}/> */}
+              {/* <PrivateRoute exact path="/products" component={MainContainer} /> */}
+              <PrivateRoute exact path="/products" render={() => <MainContainer filter={"Products"}/>}/>
+              <PrivateRoute exact path="/products/kitchen" render={() => <MainContainer filter={"Kitchen"}/>}/>
+              <PrivateRoute exact path="/products/bathroom" render={() => <MainContainer filter={"Bathroom"}/>}/>
+              <PrivateRoute exact path="/products/personal" render={() => <MainContainer filter={"Personal"}/>}/>
               <PrivateRoute exact path="/products/:id" component={ProductShowPage} />
               <PrivateRoute path="/cart" component={CartContainer}/>
               <PrivateRoute path="/checkout" component={Checkout}/>

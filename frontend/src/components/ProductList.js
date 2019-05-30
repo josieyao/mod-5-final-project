@@ -7,7 +7,7 @@ const mapStateToProps = (state) => ({
 })
 
 const mapDispatchToProps = {
-    fetchAllProducts: (category) => dispatch => {
+    fetchAllProducts: () => dispatch => {
         fetch('http://localhost:3000/products')
             .then( res => res.json())
             .then( products => dispatch({ type: 'FETCH_PRODUCTS', products: products }))
@@ -19,17 +19,24 @@ export default connect(mapStateToProps, mapDispatchToProps)(
     class ProductList extends React.Component {
 
         componentDidMount() {
-            this.props.fetchAllProducts();
+            this.props.fetchAllProducts(this.props.filter);
         }
 
         render(){
-            // console.log(this.props.products.filter( product => product.category == "Kitchen"))
+            let filterProducts = this.props.products.filter( product => {
+                if(product.category == this.props.filter)
+                return product
+            })
+            console.log(filterProducts)
             return(
                 <div className="product-list-container">
                     <div className="product-list">
-                        {this.props.products.map( product => (
+                        {filterProducts.map( product => (
                             <ProductCard {...product}/>
                         ))}
+                        {/* {this.props.products.map( product => (
+                            <ProductCard {...product}/>
+                        ))} */}
                     </div>
                 </div>
             )
