@@ -3,6 +3,7 @@ import { connect } from "react-redux";
 import DeleteRoundedIcon from '@material-ui/icons/DeleteRounded';
 
 
+
 const mapStateToProps = state => ({
   currentProduct: state.currentProduct,
   cartItems: state.cartItems,

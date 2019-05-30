@@ -35,14 +35,15 @@ export default withRouter(connect(mapStateToProps, mapDispatchToProps)(
                     {!this.props.currentUser ?
                     <div>
                         <Link to="/login">
-                        <Button variant="outlined" color="inherit" >Log In</Button>
+                        <Button variant="outlined" size="small" color="primary" style={{textDecoration: 'none', color: 'black', marginRight: '5px'}}>Log In</Button>
                         </Link>
+                        or
                         <Link to="/registration">
-                        <Button variant="outlined" color="inherit">Register</Button>
+                        <Button variant="outlined" size="small" color="primary" style={{textDecoration: 'none', color: 'black', marginLeft: '5px'}}>Register</Button>
                         </Link>
                     </div> :
                     <div>
-                        <p style={{fontSize: '20px', marginRight: '30px'}}>Welcome, {this.props.currentUser.first_name}</p>
+                        <p style={{fontSize: '20px', marginRight: '20px', marginBottom: '5px'}}>Welcome, {this.props.currentUser.first_name}</p>
                         <Button variant="outlined" color="inherit" onClick = {() => this.onLogOutClick()}>Log Out</Button>
                     </div>}
                 </div>

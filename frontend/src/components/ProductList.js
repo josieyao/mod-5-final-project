@@ -1,5 +1,6 @@
 import React from 'react'
 import ProductCard from './ProductCard';
+
 import { connect } from 'react-redux'
 
 const mapStateToProps = (state) => ({
@@ -23,22 +24,21 @@ export default connect(mapStateToProps, mapDispatchToProps)(
         }
 
         render(){
-            let filterProducts = this.props.products.filter( product => {
+            let filterProducts = this.props.filter !== "Products" ? this.props.products.filter( product => {
                 if(product.category == this.props.filter)
                 return product
-            })
-            console.log(filterProducts)
+            }) : this.props.products
             return(
-                <div className="product-list-container">
-                    <div className="product-list">
-                        {filterProducts.map( product => (
-                            <ProductCard {...product}/>
-                        ))}
-                        {/* {this.props.products.map( product => (
-                            <ProductCard {...product}/>
-                        ))} */}
+                    <div className="product-list-container">
+                        <div className="product-list">
+                            {filterProducts.map( product => (
+                                <ProductCard {...product}/>
+                            ))}
+                            {/* {this.props.products.map( product => (
+                                <ProductCard {...product}/>
+                            ))} */}
+                        </div>
                     </div>
-                </div>
             )
         }
     }

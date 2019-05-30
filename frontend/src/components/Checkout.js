@@ -1,6 +1,7 @@
 import React from 'react'
 import { connect } from 'react-redux'
 import { Link } from 'react-router-dom'
+import Button from '@material-ui/core/Button';
 
 const mapStateToProps = (state) => ({
     products: state.products,
@@ -61,6 +62,8 @@ export default connect(mapStateToProps, mapDispatchToProps)(
                     const json = await response.json();
 
                 }
+                alert('Transaction completed!')
+                this.props.history.push("/products")
             }
 
             return (
@@ -74,9 +77,10 @@ export default connect(mapStateToProps, mapDispatchToProps)(
                 //     </div>
                 //     : 
                 <div className="checkout-form-container">
-                    <h1>Checkout</h1>
                     <form>
                         <div className="checkout-form">
+                            <h1>Checkout</h1>
+                            <br/>
                             <label for="cardholder-name"><b>Full Name</b></label><br />
                             <input id="cardholder-name" name="cardholder-name" type="text" placeholder="Ex. John Smith" style={{ width: '200px' }} /><br /><br />
 
@@ -95,12 +99,10 @@ export default connect(mapStateToProps, mapDispatchToProps)(
                                 <input id="payment-cvc" name="payment-cvc" type="text" placeholder="CVC" style={{ width: '200px' }} /><br /><br />
 
                             </div>
-                            <button onClick={onAdd} id="card-button" data-secret="{{ client_secret }}">
+                            <br/>
+                            <Button variant="outlined" size="small" color="primary" style={{textDecoration: 'none', color: 'black', marginLeft: '10px', cursor: 'pointer', marginBottom: '50px'}} onClick={onAdd} id="card-button" data-secret="{{ client_secret }}">
                                 Submit Payment
-                                </button>
-                            <br />
-                            <br />
-                            <br />
+                                </Button>
                         </div>
                     </form>
                 </div>

@@ -19,7 +19,7 @@ export default connect(mapStateToProps,mapDispatchToProps)(
 
       return (
         <div className="product-card">
-          <img src={this.props.image1} alt=" " height="300" width="330" />
+          <img src={this.props.image1} alt=" " height="300" width="330" style={{alignItems: 'center'}}  />
           <h4>{this.props.name}</h4>
           <p>${this.props.price}</p>
           <br />

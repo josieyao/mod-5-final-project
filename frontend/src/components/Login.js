@@ -1,6 +1,7 @@
 import React from "react";
 import { Link } from "react-router-dom";
 import { connect } from "react-redux";
+import Button from '@material-ui/core/Button';
 
 const mapStateToProps = state => {
   return {
@@ -91,10 +92,13 @@ export default connect(mapStateToProps, mapDispatchToProps)(
     render() {
       return (
         <div className="login-form-container">
-          <div>{this.props.location.successfulMsg}</div>
-          <h1>Login</h1>
+          <h1>{this.props.location.successfulMsg}</h1>
+          <br/>
           <form onSubmit={this.handleLoginSubmit}>
+          
             <div className="login-form">
+              <h1>Login</h1>
+              <br/>
               <label for="username">
                 <b>Username</b>
               </label>
@@ -106,7 +110,6 @@ export default connect(mapStateToProps, mapDispatchToProps)(
                 name="username"
                 required
               />
-              <br />
               <br />
               <label for="password">
                 <b>Password</b>
@@ -120,26 +123,26 @@ export default connect(mapStateToProps, mapDispatchToProps)(
                 required
               />
               <br />
-              <button
+              <Button variant="outlined" size="small" color="primary" style={{textDecoration: 'none', color: 'black', marginRight: '5px'}}
                 button
                 className="tiny ui inverted red basic button"
                 type="submit"
               >
                 Login
-              </button>
+              </Button>
               <br />
               <br />
 
-              <h4>No Account Yet?</h4>
+              <h1>No Account Yet?</h1>
               <Link to="/registration">
-                <button
-                  button
-                  className="tiny ui inverted red basic button"
+              <Button variant="outlined" size="small" color="primary" style={{textDecoration: 'none', color: 'black', marginRight: '5px'}}
                   type="submit"
                 >
                   Create New Account
-                </button>
+                </Button>
               </Link>
+              <br/>
+              <br/>
             </div>
           </form>
         </div>

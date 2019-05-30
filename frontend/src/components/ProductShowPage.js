@@ -1,6 +1,7 @@
 import React from "react";
 import { connect } from "react-redux";
 import { Link } from "react-router-dom";
+import Button from '@material-ui/core/Button';
 
 const mapStateToProps = state => {
   return {
@@ -76,8 +77,6 @@ export default connect(mapStateToProps, mapDispatchToProps)(
     }
 
     render() {
-      // console.log(this.props.cartItems)
-      // console.log(this.props.currentProduct)
       if (!this.props.currentProduct) return <h1>No item found</h1>;
       return (
         <div className="product-show-container">
@@ -99,13 +98,13 @@ export default connect(mapStateToProps, mapDispatchToProps)(
             <br />
             {this.props.cartItems.find(item => item.id === this.props.currentProduct.id) === undefined ?
               <div>
-                <button onClick={() => this.addToCartButtonClicked(this.props.currentProduct)}>Add to Cart</button>
+                <Button variant="outlined" size="small" color="primary" style={{textDecoration: 'none', color: 'black'}} onClick={() => this.addToCartButtonClicked(this.props.currentProduct)}>Add to Cart</Button>
                 <br />
                 <br />
               </div>
               :
               <div>
-                <p>Added to Cart</p>
+                <p style={{fontWeight: 'bold'}}>Added to Cart</p>
                 <br />
                 <br />
               </div>
@@ -113,7 +112,7 @@ export default connect(mapStateToProps, mapDispatchToProps)(
 
 
             <Link to="/products">
-              <button>Back to Products</button>
+            <Button variant="outlined" size="small" color="primary" style={{textDecoration: 'none', color: 'black'}}>Back to Products</Button>
             </Link>
           </div>
         </div>

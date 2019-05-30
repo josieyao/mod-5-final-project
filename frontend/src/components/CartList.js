@@ -2,7 +2,7 @@ import React from "react";
 import CartItemCard from "./CartItemCard";
 import { connect } from "react-redux";
 import { Link } from "react-router-dom";
-// import { stat } from "fs";
+import Button from '@material-ui/core/Button';
 
 const mapStateToProps = state => ({
   cartItems: state.cartItems,
@@ -68,14 +68,18 @@ export default connect(
           <h1 style={{ fontSize: '70px', textAlign: 'center' }}>Your Cart</h1>
           <div className="cart-list">
             {this.props.cartItems.length === 0 ?
-
-              <h2>Your cart is currently empty</h2> :
+              <div style={{marginLeft: '-70px'}}>
+                <br/>
+                <h2 style={{textAlign: 'center', fontSize: '35px'}}>Your cart is currently empty.</h2> 
+              </div>
+              :
 
               <div>
                 {this.props.cartItems.map(item => <CartItemCard {...item} />)}
-                <p style={{ fontSize: '40px' }}>Total: ${this.totalRoundedCost()/*roundedCost*/}</p>
+                <p style={{ fontSize: '30px', textAlign: 'left', fontWeight: 'bold', padding: '10px', marginTop: '20px'}}>Total: ${this.totalRoundedCost()}</p>
+                <br/>
                 <Link to={"/checkout"}>
-                  <button>Checkout</button>
+                <Button variant="outlined" size="small" color="primary" style={{textDecoration: 'none', color: 'black', marginLeft: '10px', cursor: 'pointer', marginBottom: '100px'}}>Checkout</Button>
                 </Link>
               </div>}
           </div>

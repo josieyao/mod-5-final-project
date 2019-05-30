@@ -1,6 +1,7 @@
 import React from 'react'
 import { Link } from 'react-router-dom'
 import { connect } from 'react-redux'
+import Button from '@material-ui/core/Button';
 
 const mapStateToProps = (state) => ({
     products: state.products,
@@ -64,6 +65,7 @@ export default connect(mapStateToProps, mapDispatchToProps)(
             return(
                 <div className="registration-form-container">
                     <h1>Create a New Account</h1>
+                    <br/>
                     <form onSubmit={this.handleRegistrationSubmit}>
                         <div class="registration-form">
 
@@ -89,7 +91,7 @@ export default connect(mapStateToProps, mapDispatchToProps)(
                             <br/>
 
                             {/* <Link to="/login"> */}
-                                <button button className="tiny ui inverted red basic button" type="submit">Submit</button>
+                            <Button variant="outlined" size="small" color="primary" style={{textDecoration: 'none', color: 'black', marginRight: '5px'}} type="submit">Submit</Button>
                             {/* </Link> */}
                             <br/>
                             <br/>
