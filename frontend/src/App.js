@@ -14,6 +14,7 @@ import CartContainer from "./components/CartContainer";
 import KitchenList from "./components/KitchenList"
 import PrivateRoute from './components/PrivateRoute'
 import Footer from "./components/Footer"
+import Checkout from "./components/Checkout"
 import NoPageFound from "./components/NoPageFound"
 import { Router, Switch } from "react-router-dom";
 import history from "./history";
@@ -123,7 +124,7 @@ class App extends React.Component {
               {/* <PrivateRoute exact path="/products" component={MainContainer}/> */}
               <PrivateRoute exact path="/products/:id" component={ProductShowPage} />
               <PrivateRoute path="/cart" component={CartContainer}/>
-              <PrivateRoute path="/checkout" component={Login}/>
+              <PrivateRoute path="/checkout" component={Checkout}/>
               <PrivateRoute path="/registration" component={Registration}/>
               <PrivateRoute component={NoPageFound}/>
             </Switch>
